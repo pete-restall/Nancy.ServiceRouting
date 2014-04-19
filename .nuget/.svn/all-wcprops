@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/projects/Nancy.ServiceRouting/!svn/ver/20/.nuget
+END
+NuGet.exe
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/projects/Nancy.ServiceRouting/!svn/ver/20/.nuget/NuGet.exe
+END
+NuGet.config
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/projects/Nancy.ServiceRouting/!svn/ver/20/.nuget/NuGet.config
+END
+NuGet.targets
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/projects/Nancy.ServiceRouting/!svn/ver/20/.nuget/NuGet.targets
+END

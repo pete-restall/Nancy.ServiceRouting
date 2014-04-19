@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/projects/Nancy.ServiceRouting/!svn/ver/19/Nancy.ServiceRouting.Tests/Unit
+END
+RouteTableBuilderTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/projects/Nancy.ServiceRouting/!svn/ver/1/Nancy.ServiceRouting.Tests/Unit/RouteTableBuilderTest.cs
+END
+EnumerableExtensionsTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/projects/Nancy.ServiceRouting/!svn/ver/1/Nancy.ServiceRouting.Tests/Unit/EnumerableExtensionsTest.cs
+END
+ServiceRouteTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/projects/Nancy.ServiceRouting/!svn/ver/3/Nancy.ServiceRouting.Tests/Unit/ServiceRouteTest.cs
+END
+DefaultServiceMethodInvocationTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/projects/Nancy.ServiceRouting/!svn/ver/6/Nancy.ServiceRouting.Tests/Unit/DefaultServiceMethodInvocationTest.cs
+END
+InfoOfTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/projects/Nancy.ServiceRouting/!svn/ver/3/Nancy.ServiceRouting.Tests/Unit/InfoOfTest.cs
+END
+RouteRegistrarTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/projects/Nancy.ServiceRouting/!svn/ver/18/Nancy.ServiceRouting.Tests/Unit/RouteRegistrarTest.cs
+END
+RouteAttributeTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/projects/Nancy.ServiceRouting/!svn/ver/19/Nancy.ServiceRouting.Tests/Unit/RouteAttributeTest.cs
+END
+StubNancyModelBinding.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/projects/Nancy.ServiceRouting/!svn/ver/4/Nancy.ServiceRouting.Tests/Unit/StubNancyModelBinding.cs
+END
+RouteAttributeServiceRouteResolverTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/projects/Nancy.ServiceRouting/!svn/ver/9/Nancy.ServiceRouting.Tests/Unit/RouteAttributeServiceRouteResolverTest.cs
+END
+RouteDispatchBuilderTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/projects/Nancy.ServiceRouting/!svn/ver/19/Nancy.ServiceRouting.Tests/Unit/RouteDispatchBuilderTest.cs
+END
+RouteTableTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/projects/Nancy.ServiceRouting/!svn/ver/3/Nancy.ServiceRouting.Tests/Unit/RouteTableTest.cs
+END
+NancyModelServiceRequestBinderTest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/projects/Nancy.ServiceRouting/!svn/ver/4/Nancy.ServiceRouting.Tests/Unit/NancyModelServiceRequestBinderTest.cs
+END
+ServiceRouteEnumerableAssertionExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/projects/Nancy.ServiceRouting/!svn/ver/2/Nancy.ServiceRouting.Tests/Unit/ServiceRouteEnumerableAssertionExtensions.cs
+END

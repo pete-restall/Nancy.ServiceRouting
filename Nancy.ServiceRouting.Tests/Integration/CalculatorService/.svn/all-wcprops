@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/projects/Nancy.ServiceRouting/!svn/ver/12/Nancy.ServiceRouting.Tests/Integration/CalculatorService
+END
+CalculatorResponse.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/projects/Nancy.ServiceRouting/!svn/ver/12/Nancy.ServiceRouting.Tests/Integration/CalculatorService/CalculatorResponse.cs
+END
+MultiplyRequest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/projects/Nancy.ServiceRouting/!svn/ver/12/Nancy.ServiceRouting.Tests/Integration/CalculatorService/MultiplyRequest.cs
+END
+AddService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/projects/Nancy.ServiceRouting/!svn/ver/12/Nancy.ServiceRouting.Tests/Integration/CalculatorService/AddService.cs
+END
+CalculatorModule.cs
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/projects/Nancy.ServiceRouting/!svn/ver/12/Nancy.ServiceRouting.Tests/Integration/CalculatorService/CalculatorModule.cs
+END
+MultiplyService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/projects/Nancy.ServiceRouting/!svn/ver/12/Nancy.ServiceRouting.Tests/Integration/CalculatorService/MultiplyService.cs
+END
+AddRequest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/projects/Nancy.ServiceRouting/!svn/ver/12/Nancy.ServiceRouting.Tests/Integration/CalculatorService/AddRequest.cs
+END

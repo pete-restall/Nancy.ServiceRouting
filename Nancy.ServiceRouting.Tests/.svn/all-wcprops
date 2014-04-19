@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/projects/Nancy.ServiceRouting/!svn/ver/20/Nancy.ServiceRouting.Tests
+END
+ArrayExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/projects/Nancy.ServiceRouting/!svn/ver/19/Nancy.ServiceRouting.Tests/ArrayExtensions.cs
+END
+packages.config
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/projects/Nancy.ServiceRouting/!svn/ver/19/Nancy.ServiceRouting.Tests/packages.config
+END
+app.config
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/projects/Nancy.ServiceRouting/!svn/ver/1/Nancy.ServiceRouting.Tests/app.config
+END
+Nancy.ServiceRouting.Tests.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/projects/Nancy.ServiceRouting/!svn/ver/20/Nancy.ServiceRouting.Tests/Nancy.ServiceRouting.Tests.csproj
+END

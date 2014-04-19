@@ -1,0 +1,31 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IndexResponse>
+@using Nancy.Helpers
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Nancy.ServiceRouting Demo Site</title>
+		<link rel="stylesheet" href="@Url.Content("~/assets/styles/demo.css")" />
+		<script type="text/javascript" src="@Url.Content("~/assets/js/jquery-2.1.0.min.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/assets/js/knockout-3.1.0.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/assets/js/IndexResponseViewModel.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/assets/js/Greet/GreetIndexViewModel.js")"></script>
+		<script type="text/javascript">
+			<!--
+			$(document).ready(function() { ko.applyBindings(new Nancy.Demo.ServiceRouting.IndexResponseViewModel()); });
+			// -->
+		</script>
+	</head>
+	<body>
+		<h1>Available Demos</h1>
+		<ul>
+			@foreach (var request in Model.AvailableDemos)
+			{
+				<li><a href="javascript:void(0);" data-bind="click: function() { selectDemoContent('@HttpUtility.HtmlAttributeEncode(@request.Href)'); }">@request.Title</a></li>
+			}
+		</ul>
+
+		<h1>Demo Content</h1>
+		<div id="demoContainer" data-bind="html: selectedDemoContent, css: selectedDemoClass">
+		</div>
+	</body>
+</html>
