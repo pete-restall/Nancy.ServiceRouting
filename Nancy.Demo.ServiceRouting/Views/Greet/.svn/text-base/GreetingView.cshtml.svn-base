@@ -1,2 +1,0 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Greeting>
-<p>HTML says...<strong>@Model.Text</strong></p>
