@@ -1,6 +1,7 @@
 language: c
 
 before_install:
+  - sudo add-apt-repository ppa:directhex/monoxide
   - sudo apt-get update -qq > /dev/null
   - sudo apt-get install -qq mono-devel mono-gmcs > /dev/null
   - mozroots --import --sync
