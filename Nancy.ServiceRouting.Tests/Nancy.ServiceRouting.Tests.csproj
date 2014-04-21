@@ -44,6 +44,9 @@
     <Reference Include="Nancy.Testing">
       <HintPath>..\packages\Nancy.Testing.0.22.2\lib\net40\Nancy.Testing.dll</HintPath>
     </Reference>
+    <Reference Include="NullGuard">
+      <HintPath>..\packages\NullGuard.Fody.0.7.1\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\NullGuard.dll</HintPath>
+    </Reference>
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\packages\AutoFixture.3.12.1\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
@@ -138,7 +141,6 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <Copy Condition="'$(OS)' == 'Unix'" SourceFiles="$(SolutionDir)packages/NullGuard.Fody.0.7.1/Lib/portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40/NullGuard.dll" DestinationFolder="$(TargetDir)" />
   </Target>
   -->
 </Project>
