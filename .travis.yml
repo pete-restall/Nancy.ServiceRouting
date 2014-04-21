@@ -11,5 +11,5 @@ before_install:
   - export EnableNuGetPackageRestore=true
  
 script:
-  - xbuild Nancy.ServiceRouting.sln
+  - xbuild build/ContinuousIntegration.targets
   - mono build/xunit/xunit.console.clr4.x86.exe Nancy.ServiceRouting.Tests/bin/Debug/Nancy.ServiceRouting.Tests.dll
