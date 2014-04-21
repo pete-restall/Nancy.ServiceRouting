@@ -4,7 +4,4 @@
 	<Target Name="Build">
 		<MSBuild Projects="../Nancy.ServiceRouting.sln" Properties="Configuration=Debug;Platform=Any CPU" />
 	</Target>
-	<Target Name="AfterBuild">
-		<Copy SourceFiles="../packages/NullGuard.Fody.0.7.1/Lib/portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40/NullGuard.dll" DestinationFolder="../Nancy.ServiceRouting.Tests/bin/Debug" />
-	</Target>
 </Project>

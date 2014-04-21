@@ -138,6 +138,7 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+    <Copy Condition="'$(OS)' == 'Unix'" SourceFiles="$(SolutionDir)packages/NullGuard.Fody.0.7.1/Lib/portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40/NullGuard.dll" DestinationFolder="$(TargetDir)" />
   </Target>
   -->
 </Project>
