@@ -13,4 +13,4 @@ configuration: Debug
 
 build:
   project: Nancy.ServiceRouting.sln
-  verbosity: normal
+  verbosity: detailed
