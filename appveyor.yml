@@ -11,6 +11,9 @@ platform: Any CPU
 
 configuration: Debug
 
+install:
+  - cmd: .nuget\NuGet.exe restore Nancy.ServiceRouting.sln
+
 build:
   project: Nancy.ServiceRouting.sln
   verbosity: detailed
