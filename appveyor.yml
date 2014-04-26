@@ -1,13 +1,14 @@
-releaseVersion: 1.0.0
+environment:
+  releaseVersion: 1.0.0
 
-version: {releaseVersion}.{build}
+version: $(releaseVersion).{build}
 
 assembly_info:
   patch: true
   file: AssemblyInfo.cs
-  assembly_version: "{releaseVersion}"
+  assembly_version: "$(releaseVersion)"
   assembly_file_version: "{version}"
-  assembly_informational_version: "{releaseVersion}"
+  assembly_informational_version: "$(releaseVersion)"
 
 platform: Any CPU
 
