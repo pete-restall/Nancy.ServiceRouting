@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>Pete Restall</authors>
+		<owners>Pete Restall</owners>
+		<licenseUrl>https://github.com/pete-restall/Nancy.ServiceRouting/tree/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/pete-restall/Nancy.ServiceRouting/</projectUrl>
+		<iconUrl>http://www.gravatar.com/avatar/833ed0920ea3273180f77ba8cee9bdc6.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$description$</description>
+		<releaseNotes>Initial version of Nancy.ServiceRouting.</releaseNotes>
+		<copyright>Copyright Pete Restall 2014</copyright>
+		<tags>nancy nancyfx routing route routes web service services</tags>
+	</metadata>
+</package>

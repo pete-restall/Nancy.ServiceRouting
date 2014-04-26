@@ -1,19 +1,27 @@
-version: 1.0.0.{build}
+version: 1.0.0
 
 assembly_info:
   patch: true
   file: AssemblyInfo.cs
   assembly_version: "{version}"
-  assembly_file_version: "{version}"
+  assembly_file_version: "{version}.{build}"
   assembly_informational_version: "{version}"
 
 platform: Any CPU
 
-configuration: Debug
+configuration: Release
 
 install:
   - cmd: .nuget\NuGet.exe restore Nancy.ServiceRouting.sln
 
 build:
   project: Nancy.ServiceRouting.sln
-  verbosity: detailed
+  verbosity: normal
+  publish_nuget: true
+
+artifacts:
+  -path: Nancy.ServiceRouting\bin\$(configuration)\*.nupkg
+
+deploy:
+  provider: Environment
+  name: NuGet Staging
