@@ -1,6 +1,6 @@
 using System;
 
-namespace Nancy.ServiceRouting.Tests.Integration.EchoService
+namespace Restall.Nancy.ServiceRouting.Tests.Integration.EchoService
 {
 	[Route("/echo", "PUT", "POST", "PATCH")]
 	public class EchoFormRequest

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Xunit;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public class EnumerableExtensionsTest
 	{

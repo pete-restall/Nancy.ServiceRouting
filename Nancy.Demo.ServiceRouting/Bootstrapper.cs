@@ -1,9 +1,10 @@
 ﻿using System;
+using Nancy;
 using Nancy.Conventions;
-using Nancy.ServiceRouting;
+using Restall.Nancy.ServiceRouting;
 using Nancy.TinyIoc;
 
-namespace Nancy.Demo.ServiceRouting
+namespace Restall.Nancy.Demo.ServiceRouting
 {
 	public class Bootstrapper: DefaultNancyBootstrapper
 	{
@@ -22,7 +23,7 @@ namespace Nancy.Demo.ServiceRouting
 
 		private static string ViewPathForType(Type type)
 		{
-			string namespaceRelativeToApiRoot = type.FullName.Replace("Nancy.Demo.ServiceRouting.Api", "");
+			string namespaceRelativeToApiRoot = type.FullName.Replace("Restall.Nancy.Demo.ServiceRouting.Api", "");
 			string path = "Views/" + namespaceRelativeToApiRoot.Replace('.', '/');
 			return path.Replace("//", "/");
 		}

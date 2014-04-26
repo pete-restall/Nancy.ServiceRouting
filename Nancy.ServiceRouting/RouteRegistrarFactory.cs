@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public static class RouteRegistrarFactory
 	{

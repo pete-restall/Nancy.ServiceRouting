@@ -1,6 +1,6 @@
 using System;
 
-namespace Nancy.ServiceRouting.Tests.Integration.EchoService
+namespace Restall.Nancy.ServiceRouting.Tests.Integration.EchoService
 {
 	public class EchoResponse
 	{

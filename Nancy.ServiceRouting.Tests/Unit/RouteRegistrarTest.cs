@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using Nancy.ServiceRouting.Tests.AutoFixture;
+using Nancy;
+using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 using Rhino.Mocks;
 using Xunit.Extensions;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public class RouteRegistrarTest
 	{

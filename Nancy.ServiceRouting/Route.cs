@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
-	public class ServiceRoute
+	public class Route
 	{
-		public ServiceRoute(string verb, string path, MethodInfo method)
+		public Route(string verb, string path, MethodInfo method)
 		{
 			this.Verb = verb;
 			this.Path = path;

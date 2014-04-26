@@ -2,21 +2,21 @@
 using System.Linq;
 using FluentAssertions;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public static class ServiceRouteEnumerableAssertionExtensions
 	{
-		public static void ShouldBeEquivalentTo(this IEnumerable<ServiceRoute> actualRoutes, params ServiceRoute[] expectedRoutes)
+		public static void ShouldBeEquivalentTo(this IEnumerable<Route> actualRoutes, params Route[] expectedRoutes)
 		{
 			actualRoutes.ShouldBeEquivalentTo(expectedRoutes.AsEnumerable());
 		}
 
-		public static void ShouldBeEquivalentTo(this IEnumerable<ServiceRoute> actualRoutes, IEnumerable<ServiceRoute> expectedRoutes)
+		public static void ShouldBeEquivalentTo(this IEnumerable<Route> actualRoutes, IEnumerable<Route> expectedRoutes)
 		{
 			actualRoutes.ToArray().ShouldBeEquivalentTo(expectedRoutes.ToArray());
 		}
 
-		public static void ShouldBeEquivalentTo(this ServiceRoute[] actualRoutes, ServiceRoute[] expectedRoutes)
+		public static void ShouldBeEquivalentTo(this Route[] actualRoutes, Route[] expectedRoutes)
 		{
 			actualRoutes.Length.Should().Be(expectedRoutes.Length, " collections should be equivalent");
 			foreach (var expectedRoute in expectedRoutes)
@@ -26,7 +26,7 @@ namespace Nancy.ServiceRouting.Tests.Unit
 			}
 		}
 
-		private static bool AreRoutesEqual(ServiceRoute x, ServiceRoute y)
+		private static bool AreRoutesEqual(Route x, Route y)
 		{
 			return x.Verb == y.Verb && x.Path == y.Path && x.Method.MetadataToken == y.Method.MetadataToken;
 		}

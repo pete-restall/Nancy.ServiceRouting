@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Nancy;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public class RouteRegistrar
 	{
@@ -75,7 +76,7 @@ namespace Nancy.ServiceRouting
 				route => nancyRoutes[route.Path] = this.CreateRouteDispatch(context, route));
 		}
 
-		private Func<object, object> CreateRouteDispatch(RegistrationContext context, ServiceRoute route)
+		private Func<object, object> CreateRouteDispatch(RegistrationContext context, Route route)
 		{
 			return this.routeDispatchContext(this.routeDispatchBuilder)
 				.WithModule(context.Module)

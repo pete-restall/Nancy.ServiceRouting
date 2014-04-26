@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public static class EnumerableExtensions
 	{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	internal static class TypeExtensions
 	{

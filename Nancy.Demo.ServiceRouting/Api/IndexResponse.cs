@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Nancy.Demo.ServiceRouting.Api
+namespace Restall.Nancy.Demo.ServiceRouting.Api
 {
 	public class IndexResponse
 	{

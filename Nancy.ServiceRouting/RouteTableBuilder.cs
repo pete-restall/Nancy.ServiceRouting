@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public class RouteTableBuilder
 	{
 		private readonly IServiceRouteResolver serviceRouteResolver;
-		private ServiceRoute[] routes;
+		private Route[] routes;
 
 		public RouteTableBuilder(IServiceRouteResolver serviceRouteResolver)
 		{

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public interface IServiceRouteResolver
 	{
-		IEnumerable<ServiceRoute> GetServiceRoutes(Type serviceType);
+		IEnumerable<Route> GetServiceRoutes(Type serviceType);
 	}
 }

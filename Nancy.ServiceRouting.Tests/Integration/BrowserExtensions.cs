@@ -1,7 +1,7 @@
 ﻿using System;
 using Nancy.Testing;
 
-namespace Nancy.ServiceRouting.Tests.Integration
+namespace Restall.Nancy.ServiceRouting.Tests.Integration
 {
 	public static class BrowserExtensions
 	{

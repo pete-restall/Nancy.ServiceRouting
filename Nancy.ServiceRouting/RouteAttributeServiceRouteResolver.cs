@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public class RouteAttributeServiceRouteResolver: IServiceRouteResolver
 	{
 		private const BindingFlags MethodBindingFlags = BindingFlags.Instance | BindingFlags.Public;
 
-		public IEnumerable<ServiceRoute> GetServiceRoutes(Type serviceType)
+		public IEnumerable<Route> GetServiceRoutes(Type serviceType)
 		{
 			if (serviceType.IsAbstract || serviceType.IsGenericTypeDefinition)
 				throw new ArgumentException("Type " + serviceType + " must be a concrete type", "serviceType");
@@ -17,7 +17,7 @@ namespace Nancy.ServiceRouting
 			var serviceMethods = PublicInstanceMethodsWithSingleParameter(serviceType)
 				.SelectMany(x => x.TypeOfFirstParameter().GetCustomAttributes<RouteAttribute>(), (mth, att) => new { Attribute = att, Method = mth });
 
-			return serviceMethods.SelectMany(x => x.Attribute.Verbs.Select(y => new ServiceRoute(y, x.Attribute.Path, x.Method)));
+			return serviceMethods.SelectMany(x => x.Attribute.Verbs.Select(y => new Route(y, x.Attribute.Path, x.Method)));
 		}
 
 		private static IEnumerable<MethodInfo> PublicInstanceMethodsWithSingleParameter(Type serviceType)

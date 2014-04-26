@@ -5,7 +5,7 @@ using FluentAssertions;
 using Rhino.Mocks;
 using Xunit;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public class RouteTableBuilderTest
 	{
@@ -34,7 +34,7 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		public void ForService_Called_ExpectSameBuilderInstanceIsReturned()
 		{
 			var serviceRouteResolver = MockRepository.GenerateStub<IServiceRouteResolver>();
-			serviceRouteResolver.Stub(x => x.GetServiceRoutes(Arg<Type>.Is.Anything)).Return(new ServiceRoute[0]);
+			serviceRouteResolver.Stub(x => x.GetServiceRoutes(Arg<Type>.Is.Anything)).Return(new Route[0]);
 
 			var builder = new RouteTableBuilder(serviceRouteResolver);
 			builder.ForService(typeof(StubService)).Should().BeSameAs(builder);
@@ -54,9 +54,9 @@ namespace Nancy.ServiceRouting.Tests.Unit
 				.ShouldBeEquivalentTo(serviceRoutes);
 		}
 
-		private static ServiceRoute StubServiceRouteForMethod(MethodInfo method)
+		private static Route StubServiceRouteForMethod(MethodInfo method)
 		{
-			return new ServiceRoute(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), method);
+			return new Route(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), method);
 		}
 	}
 }

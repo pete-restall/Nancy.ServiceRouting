@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public class RouteTable
 	{
-		private readonly ServiceRoute[] serviceRoutes;
+		private readonly Route[] routes;
 
-		public RouteTable(IEnumerable<ServiceRoute> serviceRoutes)
+		public RouteTable(IEnumerable<Route> routes)
 		{
-			this.serviceRoutes = serviceRoutes.ToArray();
+			this.routes = routes.ToArray();
 		}
 
-		public IEnumerable<ServiceRoute> GetRoutesForAllVerbs()
+		public IEnumerable<Route> GetRoutesForAllVerbs()
 		{
-			return this.serviceRoutes;
+			return this.routes;
 		}
 
-		public IEnumerable<ServiceRoute> GetRoutesForVerb(string verb)
+		public IEnumerable<Route> GetRoutesForVerb(string verb)
 		{
-			return this.serviceRoutes.Where(x => x.Verb == verb);
+			return this.routes.Where(x => x.Verb == verb);
 		}
 	}
 }

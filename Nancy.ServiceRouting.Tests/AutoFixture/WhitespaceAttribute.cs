@@ -2,7 +2,7 @@
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Xunit;
 
-namespace Nancy.ServiceRouting.Tests.AutoFixture
+namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture
 {
 	public class WhitespaceAttribute: CustomizeAttribute
 	{

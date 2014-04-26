@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
+using Nancy;
 using Nancy.ModelBinding;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public class NancyModelServiceRequestBinder: IServiceRequestBinder
 	{

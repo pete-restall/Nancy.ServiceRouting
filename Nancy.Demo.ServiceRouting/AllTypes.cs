@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Nancy.Demo.ServiceRouting
+namespace Restall.Nancy.Demo.ServiceRouting
 {
 	public static class AllTypes
 	{

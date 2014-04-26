@@ -1,4 +1,4 @@
-﻿namespace Nancy.Demo.ServiceRouting.Api.Greet
+﻿namespace Restall.Nancy.Demo.ServiceRouting.Api.Greet
 {
 	public class GreetService
 	{

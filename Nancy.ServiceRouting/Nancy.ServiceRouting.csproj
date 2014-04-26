@@ -7,7 +7,7 @@
     <ProjectGuid>{305F64FC-7A96-4C7E-80AB-BD0FDCE83B9C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nancy.ServiceRouting</RootNamespace>
+    <RootNamespace>Restall.Nancy.ServiceRouting</RootNamespace>
     <AssemblyName>Nancy.ServiceRouting</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -61,7 +61,7 @@
     <Compile Include="RouteRegistrarFactory.cs" />
     <Compile Include="DefaultServiceMethodInvocation.cs" />
     <Compile Include="NancyModelServiceRequestBinder.cs" />
-    <Compile Include="ServiceRoute.cs" />
+    <Compile Include="Route.cs" />
     <Compile Include="RouteAttribute.cs" />
     <Compile Include="RouteRegistrar.cs" />
     <Compile Include="RouteTable.cs" />

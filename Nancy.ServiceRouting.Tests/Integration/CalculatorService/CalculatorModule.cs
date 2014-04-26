@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using Nancy;
 
-namespace Nancy.ServiceRouting.Tests.Integration.CalculatorService
+namespace Restall.Nancy.ServiceRouting.Tests.Integration.CalculatorService
 {
 	public class CalculatorModule: NancyModule
 	{

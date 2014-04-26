@@ -1,6 +1,6 @@
-﻿using Nancy.ServiceRouting;
+﻿using Restall.Nancy.ServiceRouting;
 
-namespace Nancy.Demo.ServiceRouting.Api.Greet
+namespace Restall.Nancy.Demo.ServiceRouting.Api.Greet
 {
 	[Route("/greet/{name}", "GET")]
 	[Route("/greet", "PUT")]

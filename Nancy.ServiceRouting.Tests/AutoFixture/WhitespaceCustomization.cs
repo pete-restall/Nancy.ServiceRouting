@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Ploeh.AutoFixture;
 
-namespace Nancy.ServiceRouting.Tests.AutoFixture
+namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture
 {
 	public class WhitespaceCustomization: ICustomization
 	{

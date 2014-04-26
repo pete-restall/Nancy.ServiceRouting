@@ -1,4 +1,4 @@
-﻿namespace Nancy.ServiceRouting.Tests.Integration.CalculatorService
+﻿namespace Restall.Nancy.ServiceRouting.Tests.Integration.CalculatorService
 {
 	[Route("/add/{left}/{right}", "GET", "DELETE", "OPTIONS")]
 	[Route("/add", "PUT", "POST", "PATCH")]

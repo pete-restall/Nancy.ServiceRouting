@@ -1,6 +1,7 @@
 ﻿using System;
+using Nancy;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public interface IServiceRequestBinder
 	{

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Nancy.ServiceRouting.Tests.AutoFixture;
+using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 
-namespace Nancy.ServiceRouting.Tests
+namespace Restall.Nancy.ServiceRouting.Tests
 {
 	public static class ArrayExtensions
 	{

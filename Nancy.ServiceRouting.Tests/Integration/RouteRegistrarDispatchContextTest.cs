@@ -1,11 +1,12 @@
 ﻿using System;
 using FluentAssertions;
-using Nancy.ServiceRouting.Tests.AutoFixture;
+using Nancy;
 using Nancy.Testing;
+using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 using Rhino.Mocks;
 using Xunit.Extensions;
 
-namespace Nancy.ServiceRouting.Tests.Integration
+namespace Restall.Nancy.ServiceRouting.Tests.Integration
 {
 	public class RouteRegistrarDispatchContextTest
 	{

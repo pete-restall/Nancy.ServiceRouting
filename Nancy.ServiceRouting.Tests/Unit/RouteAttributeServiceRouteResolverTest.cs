@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Xunit;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public class RouteAttributeServiceRouteResolverTest
 	{
@@ -155,7 +155,7 @@ namespace Nancy.ServiceRouting.Tests.Unit
 			ResolvedServiceRoutesFor<ServiceContainingOnlyNonPublicMethods>().Should().BeEmpty();
 		}
 
-		private static IEnumerable<ServiceRoute> ResolvedServiceRoutesFor<T>()
+		private static IEnumerable<Route> ResolvedServiceRoutesFor<T>()
 		{
 			return new RouteAttributeServiceRouteResolver().GetServiceRoutes(typeof(T));
 		}
@@ -165,7 +165,7 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		{
 			ResolvedServiceRoutesFor<ServiceContainingMixtureOfPublicAndNonPublicMethods>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requesttwo",
 						InfoOf.Method<ServiceContainingMixtureOfPublicAndNonPublicMethods>(x => x.ServiceMethod(null))));
@@ -176,11 +176,11 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		{
 			ResolvedServiceRoutesFor<ServiceContainingMixtureOfServiceAndNonServiceMethods>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requesttwo",
 						InfoOf.Method<ServiceContainingMixtureOfServiceAndNonServiceMethods>(x => x.ServiceMethod(new RequestTwo()))),
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requestfour",
 						InfoOf.Method<ServiceContainingMixtureOfServiceAndNonServiceMethods>(x => x.ServiceMethod(new RequestFour()))));
@@ -193,9 +193,9 @@ namespace Nancy.ServiceRouting.Tests.Unit
 			var serviceMethod = InfoOf.Method<ServiceContainingMultipleRouteVerbs>(x => x.ServiceMethod(new RequestFive()));
 			ResolvedServiceRoutesFor<ServiceContainingMultipleRouteVerbs>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute("ABC", routePath, serviceMethod),
-					new ServiceRoute("DEF", routePath, serviceMethod),
-					new ServiceRoute("GHI", routePath, serviceMethod));
+					new Route("ABC", routePath, serviceMethod),
+					new Route("DEF", routePath, serviceMethod),
+					new Route("GHI", routePath, serviceMethod));
 		}
 
 		[Fact]
@@ -209,8 +209,8 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		{
 			ResolvedServiceRoutesFor<ServiceInheritingFromAnotherType>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute("GET", "/requesttwo", InfoOf.Method<ServiceInheritingFromAnotherType>(x => x.ServiceMethod(new RequestTwo()))),
-					new ServiceRoute("GET", "/requestthree", InfoOf.Method<ServiceInheritingFromAnotherType>(x => x.MethodFromDerivedService(new RequestThree()))));
+					new Route("GET", "/requesttwo", InfoOf.Method<ServiceInheritingFromAnotherType>(x => x.ServiceMethod(new RequestTwo()))),
+					new Route("GET", "/requestthree", InfoOf.Method<ServiceInheritingFromAnotherType>(x => x.MethodFromDerivedService(new RequestThree()))));
 		}
 
 		[Fact]
@@ -218,7 +218,7 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		{
 			ResolvedServiceRoutesFor<ServiceContainingServiceMethodWithNoReturnValue>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requestone",
 						InfoOf.Method<ServiceContainingServiceMethodWithNoReturnValue>(x => x.ServiceMethod(null))));
@@ -235,11 +235,11 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		{
 			ResolvedServiceRoutesFor<ServiceContainingImplementationsOfAbstractServiceMethods>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requestone",
 						InfoOf.Method<ServiceContainingImplementationsOfAbstractServiceMethods>(x => x.ServiceMethod(new RequestOne()))),
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requesttwo",
 						InfoOf.Method<ServiceContainingImplementationsOfAbstractServiceMethods>(x => x.ServiceMethod(new RequestTwo()))));
@@ -250,11 +250,11 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		{
 			ResolvedServiceRoutesFor<ServiceContainingImplementationsOfInterfaceServiceMethods>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requestone",
 						InfoOf.Method<ServiceContainingImplementationsOfInterfaceServiceMethods>(x => x.ServiceMethod(new RequestOne()))),
-					new ServiceRoute(
+					new Route(
 						"GET",
 						"/requesttwo",
 						InfoOf.Method<ServiceContainingImplementationsOfInterfaceServiceMethods>(x => x.ServiceMethod(new RequestTwo()))));
@@ -264,7 +264,7 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		public void GetServiceRoutes_CalledWithGenericServiceType_ExpectConcreteServiceMethodsAreReturned()
 		{
 			ResolvedServiceRoutesFor<GenericService<RequestOne>>()
-				.ShouldBeEquivalentTo(new ServiceRoute("GET", "/requestone", InfoOf.Method<GenericService<RequestOne>>(x => x.ServiceMethod(null))));
+				.ShouldBeEquivalentTo(new Route("GET", "/requestone", InfoOf.Method<GenericService<RequestOne>>(x => x.ServiceMethod(null))));
 		}
 
 		[Fact]
@@ -277,7 +277,7 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		public void GetServiceRoutes_CalledWithServiceTypeContainingShadowedServiceMethods_ExpectNonShadowedServiceMethodsAreReturned()
 		{
 			ResolvedServiceRoutesFor<ServiceContainingShadowServiceMethods>()
-				.ShouldBeEquivalentTo(new ServiceRoute("GET", "/requestone", InfoOf.Method<ServiceContainingShadowServiceMethods>(x => x.ServiceMethod(null))));
+				.ShouldBeEquivalentTo(new Route("GET", "/requestone", InfoOf.Method<ServiceContainingShadowServiceMethods>(x => x.ServiceMethod(null))));
 		}
 
 		[Fact]
@@ -285,8 +285,8 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		{
 			ResolvedServiceRoutesFor<ServiceUsingDtoDecoratedWithMultipleRoutes>()
 				.ShouldBeEquivalentTo(
-					new ServiceRoute("GET", "/request/multiple/1", InfoOf.Method<ServiceUsingDtoDecoratedWithMultipleRoutes>(x => x.ServiceMethod(null))),
-					new ServiceRoute("GET", "/request/multiple/2", InfoOf.Method<ServiceUsingDtoDecoratedWithMultipleRoutes>(x => x.ServiceMethod(null))));
+					new Route("GET", "/request/multiple/1", InfoOf.Method<ServiceUsingDtoDecoratedWithMultipleRoutes>(x => x.ServiceMethod(null))),
+					new Route("GET", "/request/multiple/2", InfoOf.Method<ServiceUsingDtoDecoratedWithMultipleRoutes>(x => x.ServiceMethod(null))));
 		}
 	}
 }

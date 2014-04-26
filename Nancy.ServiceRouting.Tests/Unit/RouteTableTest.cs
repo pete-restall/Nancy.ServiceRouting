@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using FluentAssertions;
-using Nancy.ServiceRouting.Tests.AutoFixture;
+using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 using Xunit;
 using Xunit.Extensions;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public class RouteTableTest
 	{
@@ -14,33 +14,33 @@ namespace Nancy.ServiceRouting.Tests.Unit
 		public void Constructor_CalledWithNullServiceRoutes_ExpectArgumentNullExceptionWithCorrectParamName()
 		{
 			Action constructor = () => new RouteTable(null);
-			constructor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("serviceRoutes");
+			constructor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("routes");
 		}
 
 		[Theory, NancyAutoData]
-		public void GetRoutesForAllVerbs_Called_ExpectSameRoutesAsPassedToConstructor(ServiceRoute[] serviceRoutes)
+		public void GetRoutesForAllVerbs_Called_ExpectSameRoutesAsPassedToConstructor(Route[] routes)
 		{
-			new RouteTable(serviceRoutes).GetRoutesForAllVerbs().ShouldBeEquivalentTo(serviceRoutes);
+			new RouteTable(routes).GetRoutesForAllVerbs().ShouldBeEquivalentTo(routes);
 		}
 
 		[Theory, NancyAutoData]
-		public void GetRoutesForAllVerbs_Called_ExpectReferenceIsNotSameAsPassedToConstructor(ServiceRoute[] serviceRoutes)
+		public void GetRoutesForAllVerbs_Called_ExpectReferenceIsNotSameAsPassedToConstructor(Route[] routes)
 		{
-			((object) new RouteTable(serviceRoutes).GetRoutesForAllVerbs()).Should().NotBeSameAs(serviceRoutes);
+			((object) new RouteTable(routes).GetRoutesForAllVerbs()).Should().NotBeSameAs(routes);
 		}
 
 		[Theory, NancyAutoData]
-		public void GetRoutesForVerb_CalledWithNullVerb_ExpectArgumentNullExceptionWithCorrectParamName(ServiceRoute[] serviceRoutes)
+		public void GetRoutesForVerb_CalledWithNullVerb_ExpectArgumentNullExceptionWithCorrectParamName(Route[] routes)
 		{
-			new RouteTable(serviceRoutes).Invoking(x => x.GetRoutesForVerb(null))
+			new RouteTable(routes).Invoking(x => x.GetRoutesForVerb(null))
 				.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("verb");
 		}
 
 		[Theory, NancyAutoData]
 		public void GetRoutesForVerb_Called_ExpectOnlyRoutesMatchingVerbAreReturned(
-			ServiceRoute[] mixedVerbRoutes, string verb, string[] routes)
+			Route[] mixedVerbRoutes, string verb, string[] routes)
 		{
-			var specificVerbRoutes = routes.Select(x => new ServiceRoute(verb, x, DummyMethodInfo)).ToArray();
+			var specificVerbRoutes = routes.Select(x => new Route(verb, x, DummyMethodInfo)).ToArray();
 			var table = new RouteTable(mixedVerbRoutes.Concat(specificVerbRoutes).Shuffle());
 			table.GetRoutesForVerb(verb).Should().BeEquivalentTo(specificVerbRoutes);
 		}

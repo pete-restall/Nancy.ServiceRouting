@@ -1,11 +1,11 @@
 ﻿using System;
 using FluentAssertions;
-using Nancy.ServiceRouting.Tests.AutoFixture;
+using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 using Rhino.Mocks;
 using Xunit;
 using Xunit.Extensions;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public class DefaultServiceMethodInvocationTest
 	{

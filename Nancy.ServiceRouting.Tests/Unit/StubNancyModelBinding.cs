@@ -1,6 +1,7 @@
 ﻿using System;
+using Nancy;
 
-namespace Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
 	public static class StubNancyModelBinding
 	{

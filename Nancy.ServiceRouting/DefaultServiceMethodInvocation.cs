@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using NullGuard;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public class DefaultServiceMethodInvocation: IServiceMethodInvocation
 	{

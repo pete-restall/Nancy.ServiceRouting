@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public interface IServiceMethodInvocation
 	{

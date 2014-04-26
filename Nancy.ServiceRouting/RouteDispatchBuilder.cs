@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading;
+using Nancy;
 using NullGuard;
 
-namespace Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting
 {
 	public class RouteDispatchBuilder
 	{

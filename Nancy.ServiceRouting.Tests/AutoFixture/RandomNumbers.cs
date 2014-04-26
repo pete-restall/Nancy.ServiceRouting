@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nancy.ServiceRouting.Tests.AutoFixture
+namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture
 {
 	public static class RandomNumbers
 	{

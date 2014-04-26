@@ -2,7 +2,7 @@
 using System.Linq;
 using Ploeh.AutoFixture.Kernel;
 
-namespace Nancy.ServiceRouting.Tests.AutoFixture
+namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture
 {
 	public class WhitespaceGenerator: ISpecimenBuilder
 	{

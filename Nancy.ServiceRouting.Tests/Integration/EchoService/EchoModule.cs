@@ -1,4 +1,6 @@
-namespace Nancy.ServiceRouting.Tests.Integration.EchoService
+using Nancy;
+
+namespace Restall.Nancy.ServiceRouting.Tests.Integration.EchoService
 {
 	public class EchoModule: NancyModule
 	{
