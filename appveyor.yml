@@ -20,7 +20,7 @@ build:
   publish_nuget: true
 
 artifacts:
-  -path: Nancy.ServiceRouting\bin\$(configuration)\*.nupkg
+  - path: Nancy.ServiceRouting\bin\$(configuration)\*.nupkg
 
 deploy:
   provider: Environment
