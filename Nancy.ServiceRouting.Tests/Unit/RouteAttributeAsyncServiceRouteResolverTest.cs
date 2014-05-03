@@ -7,6 +7,8 @@ using Xunit;
 
 namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
+	#pragma warning disable 4014
+
 	public class RouteAttributeAsyncServiceRouteResolverTest
 	{
 		private static Task LongRunningTask() { return null; }
@@ -340,4 +342,6 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			ResolvedServiceRoutesFor<ServiceContainingNonAsyncServiceMethodsThatReturnTasks>().Should().BeEmpty();
 		}
 	}
+
+	#pragma warning restore 4014
 }

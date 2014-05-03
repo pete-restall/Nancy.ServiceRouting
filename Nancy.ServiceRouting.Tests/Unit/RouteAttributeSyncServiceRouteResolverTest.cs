@@ -6,6 +6,8 @@ using Xunit;
 
 namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
+	#pragma warning disable 4014
+
 	public class RouteAttributeSyncServiceRouteResolverTest
 	{
 		private class ServiceContainingOnlyNonPublicMethods
@@ -304,4 +306,6 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			ResolvedServiceRoutesFor<ServiceContainingAsyncServiceMethods>().Should().BeEmpty();
 		}
 	}
+
+	#pragma warning restore 4014
 }
