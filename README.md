@@ -40,7 +40,7 @@ Create your DTOs and decorate them with your routes:
     [Route("/some/{awesome}/route", "GET", "PUT", ...)]
     public class RequestDto
     {
-	public int Awesome { get; set; }
+        public int Awesome { get; set; }
         ...
     }
 ```

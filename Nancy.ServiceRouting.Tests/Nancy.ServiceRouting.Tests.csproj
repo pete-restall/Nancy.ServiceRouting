@@ -108,10 +108,11 @@
     <Compile Include="Integration\GetRouteTest.cs" />
     <Compile Include="Integration\RouteRegistrarDispatchContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\RouteAttributeAsyncServiceRouteResolverTest.cs" />
     <Compile Include="Unit\NancyModelServiceRequestBinderTest.cs" />
     <Compile Include="Unit\EnumerableExtensionsTest.cs" />
     <Compile Include="Unit\InfoOfTest.cs" />
-    <Compile Include="Unit\RouteAttributeServiceRouteResolverTest.cs" />
+    <Compile Include="Unit\RouteAttributeSyncServiceRouteResolverTest.cs" />
     <Compile Include="Unit\RouteDispatchBuilderTest.cs" />
     <Compile Include="Unit\RouteRegistrarTest.cs" />
     <Compile Include="Unit\RouteAttributeTest.cs" />

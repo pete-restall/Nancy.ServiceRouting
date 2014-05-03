@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Xunit;
 
 namespace Restall.Nancy.ServiceRouting.Tests.Unit
 {
-	public class RouteAttributeServiceRouteResolverTest
+	public class RouteAttributeSyncServiceRouteResolverTest
 	{
 		private class ServiceContainingOnlyNonPublicMethods
 		{
@@ -88,7 +89,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			public Response ServiceMethod(RequestTwo request) { return new Response(); }
 		}
 
-		private class ServiceContainingShadowServiceMethods : GenericService<RequestOne>
+		private class ServiceContainingShadowServiceMethods: GenericService<RequestOne>
 		{
 			public new Response ServiceMethod(RequestOne request) { return new Response(); }
 		}
@@ -96,6 +97,14 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		private class ServiceUsingDtoDecoratedWithMultipleRoutes
 		{
 			public void ServiceMethod(RequestMultipleRoutes request) { }
+		}
+
+		private class ServiceContainingAsyncServiceMethods
+		{
+			public async void ServiceMethodReturningVoid(RequestOne request) { await LongRunningTask(); }
+			private static Task LongRunningTask() { return null; }
+			public async Task ServiceMethodReturningTask(RequestTwo request) { await LongRunningTask(); }
+			public async Task<object> ServiceMethodReturningTaskOfT(RequestThree request) { await LongRunningTask(); return new Response(); }
 		}
 
 		[Route("/requestone")]
@@ -124,28 +133,28 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		[Fact]
 		public void GetServiceRoutes_CalledWithAbstractServiceType_ExpectArgumentExceptionWithCorrectParamName()
 		{
-			new RouteAttributeServiceRouteResolver().Invoking(x => x.GetServiceRoutes(typeof(AbstractService)))
+			new RouteAttributeSyncServiceRouteResolver().Invoking(x => x.GetServiceRoutes(typeof(AbstractService)))
 				.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("serviceType");
 		}
 
 		[Fact]
 		public void GetServiceRoutes_CalledWithInterfaceServiceType_ExpectArgumentExceptionWithCorrectParamName()
 		{
-			new RouteAttributeServiceRouteResolver().Invoking(x => x.GetServiceRoutes(typeof(IService)))
+			new RouteAttributeSyncServiceRouteResolver().Invoking(x => x.GetServiceRoutes(typeof(IService)))
 				.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("serviceType");
 		}
 
 		[Fact]
 		public void GetServiceRoutes_CalledWithGenericDefinitionServiceType_ExpectArgumentExceptionWithCorrectParamName()
 		{
-			new RouteAttributeServiceRouteResolver().Invoking(x => x.GetServiceRoutes(typeof(GenericService<>)))
+			new RouteAttributeSyncServiceRouteResolver().Invoking(x => x.GetServiceRoutes(typeof(GenericService<>)))
 				.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("serviceType");
 		}
 
 		[Fact]
 		public void GetServiceRoutes_CalledWithNullServiceType_ExpectArgumentNullExceptionWithCorrectParamName()
 		{
-			new RouteAttributeServiceRouteResolver().Invoking(x => x.GetServiceRoutes(null))
+			new RouteAttributeSyncServiceRouteResolver().Invoking(x => x.GetServiceRoutes(null))
 				.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("serviceType");
 		}
 
@@ -157,7 +166,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 
 		private static IEnumerable<Route> ResolvedServiceRoutesFor<T>()
 		{
-			return new RouteAttributeServiceRouteResolver().GetServiceRoutes(typeof(T));
+			return new RouteAttributeSyncServiceRouteResolver().GetServiceRoutes(typeof(T));
 		}
 
 		[Fact]
@@ -268,7 +277,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		}
 
 		[Fact]
-		public void GetServiceRoutes_CalledWithServiceTypeContainingGenericServiceMethod_ExpectGenericServiceMethodsIsNotReturned()
+		public void GetServiceRoutes_CalledWithServiceTypeContainingGenericServiceMethod_ExpectGenericServiceMethodsAreNotReturned()
 		{
 			ResolvedServiceRoutesFor<ServiceContainingGenericServiceMethod>().Should().BeEmpty();
 		}
@@ -287,6 +296,12 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 				.ShouldBeEquivalentTo(
 					new Route("GET", "/request/multiple/1", InfoOf.Method<ServiceUsingDtoDecoratedWithMultipleRoutes>(x => x.ServiceMethod(null))),
 					new Route("GET", "/request/multiple/2", InfoOf.Method<ServiceUsingDtoDecoratedWithMultipleRoutes>(x => x.ServiceMethod(null))));
+		}
+
+		[Fact]
+		public void GetServiceRoutes_CalledWithServiceTypeContainingAsyncServiceMethods_ExpectAsyncServiceMethodsAreNotReturned()
+		{
+			ResolvedServiceRoutesFor<ServiceContainingAsyncServiceMethods>().Should().BeEmpty();
 		}
 	}
 }

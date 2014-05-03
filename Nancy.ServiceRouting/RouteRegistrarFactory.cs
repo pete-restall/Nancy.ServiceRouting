@@ -7,7 +7,7 @@ namespace Restall.Nancy.ServiceRouting
 		public static RouteRegistrar CreateDefaultInstance(Func<Type, object> serviceFactory)
 		{
 			return new RouteRegistrar(
-				new RouteTableBuilder(new RouteAttributeServiceRouteResolver()),
+				new RouteTableBuilder(new RouteAttributeSyncServiceRouteResolver()),
 				new RouteDispatchBuilder(),
 				serviceFactory,
 				new NancyModelServiceRequestBinder(),

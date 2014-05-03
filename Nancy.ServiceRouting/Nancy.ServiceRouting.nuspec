@@ -11,7 +11,7 @@
 		<iconUrl>http://www.gravatar.com/avatar/833ed0920ea3273180f77ba8cee9bdc6.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
-		<releaseNotes>Initial version of Nancy.ServiceRouting.</releaseNotes>
+		<releaseNotes>Asynchronous Routing Support.</releaseNotes>
 		<copyright>Copyright Pete Restall 2014</copyright>
 		<tags>nancy nancyfx routing route routes web service services</tags>
 	</metadata>
