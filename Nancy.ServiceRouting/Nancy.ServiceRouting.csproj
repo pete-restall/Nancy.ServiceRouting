@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregateServiceRouteResolver.cs" />
     <Compile Include="RouteAttributeAsyncServiceRouteResolver.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="InfoOf.cs" />

@@ -99,6 +99,7 @@
     <Compile Include="AutoFixture\WhitespaceCustomization.cs" />
     <Compile Include="AutoFixture\WhitespaceGenerator.cs" />
     <Compile Include="AutoFixture\WithinInclusiveRangeAttribute.cs" />
+    <Compile Include="IntegerExtensions.cs" />
     <Compile Include="Integration\BrowserContextExtensions.cs" />
     <Compile Include="Integration\CalculatorService\AddRequest.cs" />
     <Compile Include="Integration\CalculatorService\AddService.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Integration\GetRouteTest.cs" />
     <Compile Include="Integration\RouteRegistrarDispatchContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\AggregateServiceRouteResolverTest.cs" />
     <Compile Include="Unit\RouteAttributeAsyncServiceRouteResolverTest.cs" />
     <Compile Include="Unit\NancyModelServiceRequestBinderTest.cs" />
     <Compile Include="Unit\EnumerableExtensionsTest.cs" />
