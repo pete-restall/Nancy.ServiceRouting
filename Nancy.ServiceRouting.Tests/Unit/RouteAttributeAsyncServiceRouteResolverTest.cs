@@ -11,52 +11,51 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 
 	public class RouteAttributeAsyncServiceRouteResolverTest
 	{
-		private static Task LongRunningTask() { return null; }
-
 		private class ServiceContainingOnlyNonPublicMethods
 		{
-			private async Task<Response> ServiceMethod(RequestOne request) { await LongRunningTask(); return new Response(); }
-			protected async Task<Response> ServiceMethod(RequestTwo request) { await LongRunningTask(); return new Response(); }
-			internal async Task<Response> ServiceMethod(RequestThree request) { await LongRunningTask(); return new Response(); }
-			protected internal async Task<Response> ServiceMethod(RequestFour request) { await LongRunningTask(); return new Response(); }
+			private async Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
+			protected async Task<Response> ServiceMethod(RequestTwo request) { return await LongRunningTask.Instance<Response>(); }
+			internal async Task<Response> ServiceMethod(RequestThree request) { return await LongRunningTask.Instance<Response>(); }
+			protected internal async Task<Response> ServiceMethod(RequestFour request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceContainingMixtureOfPublicAndNonPublicMethods
 		{
-			private async Task<Response> ServiceMethod(RequestOne request) { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod(RequestTwo request) { await LongRunningTask(); return new Response(); }
+			private async Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod(RequestTwo request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceContainingMixtureOfServiceAndNonServiceMethods
 		{
-			public async Task<Response> ServiceMethod(RequestOne request, int otherParameter) { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod(RequestTwo request) { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod(RequestTwo request, CancellationToken cancel, int tooMany) { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod(int otherParameter, RequestThree request) { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod(RequestFour request) { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod() { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod(NonDecoratedRequest request) { await LongRunningTask(); return new Response(); }
-			public Task<Response> ServiceMethod(RequestFive request) { return null; }
+			public async Task<Response> ServiceMethod(RequestOne request, int otherParameter) { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod(RequestTwo request) { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod(RequestTwo request, CancellationToken cancel, int tooMany) { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod(int otherParameter, RequestThree request) { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod(RequestFour request) { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod() { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod(NonDecoratedRequest request) { return await LongRunningTask.Instance<Response>(); }
+			public void ServiceMethod(RequestFive request) { }
+			public void ServiceMethod(RequestFive request, CancellationToken cancel) { }
 		}
 
 		private class ServiceContainingMultipleRouteVerbs
 		{
-			public async Task<Response> ServiceMethod(RequestFive request) { await LongRunningTask(); return new Response(); }
+			public async Task<Response> ServiceMethod(RequestFive request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceContainingOnlyStaticMethods
 		{
-			public static async Task<Response> ServiceMethod(RequestTwo request) { await LongRunningTask(); return new Response(); }
+			public static async Task<Response> ServiceMethod(RequestTwo request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceInheritingFromAnotherType: ServiceContainingMixtureOfPublicAndNonPublicMethods
 		{
-			public async Task<Response> MethodFromDerivedService(RequestThree request) { await LongRunningTask(); return new Response(); }
+			public async Task<Response> MethodFromDerivedService(RequestThree request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceContainingServiceMethodWithNoReturnValue
 		{
-			public async void ServiceMethod(RequestOne request) { await LongRunningTask(); }
+			public async void ServiceMethod(RequestOne request) { await LongRunningTask.Instance(); }
 		}
 
 		private class ServiceContainingConstructorMatchingServiceMethodSignature
@@ -67,7 +66,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		private abstract class AbstractService
 		{
 			public abstract Task<Response> ServiceMethod(RequestOne request);
-			public async Task<Response> ServiceMethod(RequestTwo request) { await LongRunningTask(); return new Response(); }
+			public async Task<Response> ServiceMethod(RequestTwo request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private interface IService
@@ -77,50 +76,48 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 
 		private class GenericService<T>
 		{
-			public async void ServiceMethod(T request) { await LongRunningTask(); }
+			public async void ServiceMethod(T request) { await LongRunningTask.Instance(); }
 		}
 
 		private class ServiceContainingGenericServiceMethod
 		{
-			public async void ServiceMethod<T>(T request) { await LongRunningTask(); }
+			public async void ServiceMethod<T>(T request) { await LongRunningTask.Instance(); }
 		}
 
 		private class ServiceContainingImplementationsOfAbstractServiceMethods: AbstractService
 		{
-			public async override Task<Response> ServiceMethod(RequestOne request) { await LongRunningTask(); return new Response(); }
+			public async override Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceContainingImplementationsOfInterfaceServiceMethods: IService
 		{
-			public async Task<Response> ServiceMethod(RequestOne request) { await LongRunningTask(); return new Response(); }
-			public async Task<Response> ServiceMethod(RequestTwo request) { await LongRunningTask(); return new Response(); }
+			public async Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
+			public async Task<Response> ServiceMethod(RequestTwo request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceContainingShadowServiceMethods: GenericService<RequestOne>
 		{
-			public async new Task<Response> ServiceMethod(RequestOne request) { await LongRunningTask(); return new Response(); }
+			public async new Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceUsingDtoDecoratedWithMultipleRoutes
 		{
-			public async void ServiceMethod(RequestMultipleRoutes request) { await LongRunningTask(); }
+			public async void ServiceMethod(RequestMultipleRoutes request) { await LongRunningTask.Instance(); }
 		}
 
 		private class ServiceContainingServiceMethodsWithCancellationTokens
 		{
-			public async void ServiceMethodReturningVoid(RequestOne request, CancellationToken cancel) { await LongRunningTask(); }
-			public async Task ServiceMethodReturningTask(RequestTwo request, CancellationToken cancel) { await LongRunningTask(); }
-			public async Task<object> ServiceMethodReturningTaskOfT(RequestThree request, CancellationToken cancel) { await LongRunningTask(); return new Response(); }
+			public async void ServiceMethodReturningVoid(RequestOne request, CancellationToken cancel) { await LongRunningTask.Instance(); }
+			public async Task ServiceMethodReturningTask(RequestTwo request, CancellationToken cancel) { await LongRunningTask.Instance(); }
+			public async Task<object> ServiceMethodReturningTaskOfT(RequestThree request, CancellationToken cancel) { return await LongRunningTask.Instance<object>(); }
 		}
 
 		private class ServiceContainingNonAsyncServiceMethodsThatReturnTasks
 		{
-			public void ServiceMethod(RequestOne request) { }
-			public Task ServiceMethod(RequestTwo request) { return LongRunningTask(); }
-			public Task<object> ServiceMethod(RequestThree request) { return null; }
-			public void ServiceMethod(RequestOne request, CancellationToken cancel) { }
-			public Task ServiceMethod(RequestTwo request, CancellationToken cancel) { return LongRunningTask(); }
-			public Task<object> ServiceMethod(RequestThree request, CancellationToken cancel) { return null; }
+			public Task ServiceMethod(RequestOne request) { return LongRunningTask.Instance(); }
+			public Task<object> ServiceMethod(RequestTwo request) { return LongRunningTask.Instance<object>(); }
+			public Task ServiceMethod(RequestThree request, CancellationToken cancel) { return LongRunningTask.Instance(); }
+			public Task<object> ServiceMethod(RequestFour request, CancellationToken cancel) { return LongRunningTask.Instance<object>(); }
 		}
 
 		[Route("/requestone")]
@@ -337,9 +334,30 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		}
 
 		[Fact]
-		public void GetServiceRoutes_CalledWithServiceTypeContainingNonAsyncServiceMethodsThatReturnTasks_EmptyNonAsyncMethodsAreNotReturned()
+		public void GetServiceRoutes_CalledWithServiceTypeContainingNonAsyncServiceMethodsThatReturnTasks_EmptyServiceMethodsAreReturned()
 		{
-			ResolvedServiceRoutesFor<ServiceContainingNonAsyncServiceMethodsThatReturnTasks>().Should().BeEmpty();
+			ResolvedServiceRoutesFor<ServiceContainingNonAsyncServiceMethodsThatReturnTasks>()
+				.ShouldBeEquivalentTo(
+					new Route(
+						"GET",
+						"/requestone",
+						InfoOf.Method<ServiceContainingNonAsyncServiceMethodsThatReturnTasks>(
+							x => x.ServiceMethod(new RequestOne()))),
+					new Route(
+						"GET",
+						"/requesttwo",
+						InfoOf.Method<ServiceContainingNonAsyncServiceMethodsThatReturnTasks>(
+							x => x.ServiceMethod(new RequestTwo()))),
+					new Route(
+						"GET",
+						"/requestthree",
+						InfoOf.Method<ServiceContainingNonAsyncServiceMethodsThatReturnTasks>(
+							x => x.ServiceMethod(new RequestThree(), CancellationToken.None))),
+					new Route(
+						"GET",
+						"/requestfour",
+						InfoOf.Method<ServiceContainingNonAsyncServiceMethodsThatReturnTasks>(
+							x => x.ServiceMethod(new RequestFour(), CancellationToken.None))));
 		}
 	}
 

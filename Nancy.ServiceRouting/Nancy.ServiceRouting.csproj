@@ -83,7 +83,7 @@
     <Compile Include="RouteAttributeSyncServiceRouteResolver.cs" />
     <Compile Include="RouteDispatchBuilder.cs" />
     <Compile Include="RouteRegistrarFactory.cs" />
-    <Compile Include="DefaultServiceMethodInvocation.cs" />
+    <Compile Include="SyncServiceMethodInvocation.cs" />
     <Compile Include="NancyModelServiceRequestBinder.cs" />
     <Compile Include="Route.cs" />
     <Compile Include="RouteAttribute.cs" />

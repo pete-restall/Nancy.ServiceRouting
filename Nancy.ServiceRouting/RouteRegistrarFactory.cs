@@ -11,7 +11,7 @@ namespace Restall.Nancy.ServiceRouting
 				new RouteDispatchBuilder(),
 				serviceFactory,
 				new NancyModelServiceRequestBinder(),
-				new DefaultServiceMethodInvocation());
+				new SyncServiceMethodInvocation());
 		}
 	}
 }

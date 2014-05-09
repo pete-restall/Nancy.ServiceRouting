@@ -5,6 +5,12 @@ namespace Restall.Nancy.ServiceRouting
 {
 	public interface IServiceMethodInvocation
 	{
-		Func<object, object> CreateInvocationDelegate(Func<object> serviceFactory, MethodInfo serviceMethod, object defaultResponse);
+		bool CanCreateInvocationDelegateFor(MethodInfo serviceMethod);
+
+		Delegate CreateInvocationDelegate(
+			Func<object> serviceFactory,
+			Func<object, object> requestBinder,
+			MethodInfo serviceMethod,
+			object defaultResponse);
 	}
 }

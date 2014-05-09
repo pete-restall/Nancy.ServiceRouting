@@ -105,9 +105,14 @@
     <Compile Include="Integration\CalculatorService\AddService.cs" />
     <Compile Include="Integration\CalculatorService\CalculatorModule.cs" />
     <Compile Include="Integration\CalculatorService\CalculatorResponse.cs" />
+    <Compile Include="Integration\CalculatorService\AsyncCalculatorModule.cs" />
+    <Compile Include="Integration\CalculatorService\AsyncAddService.cs" />
+    <Compile Include="Integration\CalculatorService\AsyncMultiplyService.cs" />
     <Compile Include="Integration\CalculatorService\MultiplyService.cs" />
     <Compile Include="Integration\CalculatorService\MultiplyRequest.cs" />
     <Compile Include="Integration\BrowserExtensions.cs" />
+    <Compile Include="Integration\EchoService\AsyncEchoService.cs" />
+    <Compile Include="Integration\EchoService\AsyncEchoModule.cs" />
     <Compile Include="Integration\OptionsRouteTest.cs" />
     <Compile Include="Integration\PatchRouteTest.cs" />
     <Compile Include="Integration\DeleteRouteTest.cs" />
@@ -120,6 +125,7 @@
     <Compile Include="Integration\PutRouteTest.cs" />
     <Compile Include="Integration\GetRouteTest.cs" />
     <Compile Include="Integration\RouteRegistrarDispatchContextTest.cs" />
+    <Compile Include="LongRunningTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\AggregateServiceRouteResolverTest.cs" />
     <Compile Include="Unit\RouteAttributeAsyncServiceRouteResolverTest.cs" />
@@ -132,7 +138,7 @@
     <Compile Include="Unit\RouteAttributeTest.cs" />
     <Compile Include="Unit\RouteTableBuilderTest.cs" />
     <Compile Include="Unit\RouteTableTest.cs" />
-    <Compile Include="Unit\DefaultServiceMethodInvocationTest.cs" />
+    <Compile Include="Unit\SyncServiceMethodInvocationTest.cs" />
     <Compile Include="Unit\ServiceRouteEnumerableAssertionExtensions.cs" />
     <Compile Include="Unit\RouteTest.cs" />
     <Compile Include="Unit\StubNancyModelBinding.cs" />

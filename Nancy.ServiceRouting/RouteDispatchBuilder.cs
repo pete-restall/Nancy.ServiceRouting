@@ -10,16 +10,13 @@ namespace Restall.Nancy.ServiceRouting
 	{
 		private class DispatchContext
 		{
-			public Func<object, object> CreateDispatch()
+			public Delegate CreateDispatch()
 			{
-				var invoke = this.CreateInvoke();
-				var bindModel = this.CreateRequestBinder();
-				return request => invoke(bindModel(request));
-			}
-
-			private Func<object, object> CreateInvoke()
-			{
-				return this.ServiceMethodInvocation.CreateInvocationDelegate(() => this.ServiceFactory(this.ServiceType), this.Method, this.DefaultResponse);
+				return this.ServiceMethodInvocation.CreateInvocationDelegate(
+					() => this.ServiceFactory(this.ServiceType),
+					this.CreateRequestBinder(),
+					this.Method,
+					this.DefaultResponse);
 			}
 
 			private Func<object, object> CreateRequestBinder()
@@ -80,7 +77,7 @@ namespace Restall.Nancy.ServiceRouting
 			return this;
 		}
 
-		public Func<object, object> Build()
+		public Delegate Build()
 		{
 			var savedBindingContext = Interlocked.Exchange(ref this.dispatchContext, new DispatchContext());
 			return savedBindingContext.CreateDispatch();

@@ -15,7 +15,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture
 			this.Fixture.Register<IServiceRouteResolver>(() => new RouteAttributeSyncServiceRouteResolver());
 			this.Fixture.Register<Func<Type, object>>(() => Activator.CreateInstance);
 			this.Fixture.Register<IServiceRequestBinder>(() => new NancyModelServiceRequestBinder());
-			this.Fixture.Register<IServiceMethodInvocation>(() => new DefaultServiceMethodInvocation());
+			this.Fixture.Register<IServiceMethodInvocation>(() => new SyncServiceMethodInvocation());
 			this.Fixture.Register(() => RouteRegistrarFactory.CreateDefaultInstance(Activator.CreateInstance));
 		}
 	}

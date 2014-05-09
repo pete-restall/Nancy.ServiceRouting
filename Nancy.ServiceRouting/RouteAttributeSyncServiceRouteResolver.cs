@@ -9,7 +9,7 @@ namespace Restall.Nancy.ServiceRouting
 	{
 		protected override IEnumerable<MethodInfo> GetServiceMethodsFrom(Type serviceType)
 		{
-			return serviceType.AllPublicInstanceMethods().Where(x => x.GetParameters().Length == 1 && !x.IsAsync());
+			return serviceType.AllPublicInstanceMethods().Where(x => x.NumberOfParameters() == 1 && !x.IsAsyncCallable());
 		}
 	}
 }

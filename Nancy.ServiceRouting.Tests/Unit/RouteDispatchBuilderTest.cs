@@ -145,9 +145,9 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			var serviceFactory = MockRepository.GenerateStub<Func<Type, object>>();
 			serviceFactory.Stub(x => x(Arg<Type>.Is.Equal(service.GetType()))).Return(service);
 
-			var lambda = new RouteDispatchBuilder()
+			var lambda = (Func<object, object>) new RouteDispatchBuilder()
 				.WithServiceFactory(serviceFactory)
-				.WithServiceMethodInvocation(new DefaultServiceMethodInvocation())
+				.WithServiceMethodInvocation(new SyncServiceMethodInvocation())
 				.WithRequestMessageBinder(requestMessageBinder)
 				.WithModule(module)
 				.WithServiceType(service.GetType())
@@ -166,9 +166,9 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			var serviceFactory = MockRepository.GenerateStub<Func<Type, object>>();
 			services.ForEach(service => serviceFactory.Stub(x => x(Arg<Type>.Is.Anything)).Return(service).Repeat.Once());
 
-			var lambda = new RouteDispatchBuilder()
+			var lambda = (Func<object, object>) new RouteDispatchBuilder()
 				.WithServiceFactory(serviceFactory)
-				.WithServiceMethodInvocation(new DefaultServiceMethodInvocation())
+				.WithServiceMethodInvocation(new SyncServiceMethodInvocation())
 				.WithRequestMessageBinder(requestMessageBinder)
 				.WithModule(module)
 				.WithServiceType(services[0].GetType())
@@ -190,9 +190,9 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		public void Build_CalledWhenDefaultResponseSetForServiceMethodNotReturningResponse_ExpectReturnedDelegateReturnsDefaultResponse(
 			NancyModule module, object requestParameters, Request request, Response defaultResponse)
 		{
-			var lambda = new RouteDispatchBuilder()
+			var lambda = (Func<object, object>) new RouteDispatchBuilder()
 				.WithServiceFactory(x => new StubService())
-				.WithServiceMethodInvocation(new DefaultServiceMethodInvocation())
+				.WithServiceMethodInvocation(new SyncServiceMethodInvocation())
 				.WithRequestMessageBinder(StubRequestMessageBinderToReturn(request))
 				.WithModule(module)
 				.WithServiceType(typeof(StubService))
@@ -207,9 +207,9 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		public void Build_CalledWhenDefaultResponseNotSetForServiceMethodNotReturningResponse_ExpectReturnedDelegateReturnsHttpNoContentResponse(
 			NancyModule module, object requestParameters, Request request)
 		{
-			var lambda = new RouteDispatchBuilder()
+			var lambda = (Func<object, object>) new RouteDispatchBuilder()
 				.WithServiceFactory(x => new StubService())
-				.WithServiceMethodInvocation(new DefaultServiceMethodInvocation())
+				.WithServiceMethodInvocation(new SyncServiceMethodInvocation())
 				.WithRequestMessageBinder(StubRequestMessageBinderToReturn(request))
 				.WithModule(module)
 				.WithServiceType(typeof(StubService))

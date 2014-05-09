@@ -10,14 +10,14 @@ namespace Restall.Nancy.ServiceRouting
 	{
 		protected override IEnumerable<MethodInfo> GetServiceMethodsFrom(Type serviceType)
 		{
-			return serviceType.AllPublicInstanceMethods().Where(x => IsSingleParameterWithOptionalCancellationToken(x) && x.IsAsync());
+			return serviceType.AllPublicInstanceMethods().Where(x => IsSingleParameterWithOptionalCancellationToken(x) && x.IsAsyncCallable());
 		}
 
 		private static bool IsSingleParameterWithOptionalCancellationToken(MethodInfo method)
 		{
 			return
-				method.GetParameters().Length == 1 ||
-				(method.GetParameters().Length == 2 && method.TypeOfSecondParameter() == typeof(CancellationToken));
+				method.NumberOfParameters() == 1 ||
+				(method.NumberOfParameters() == 2 && method.TypeOfSecondParameter() == typeof(CancellationToken));
 		}
 	}
 }

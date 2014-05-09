@@ -103,10 +103,15 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 
 		private class ServiceContainingAsyncServiceMethods
 		{
-			public async void ServiceMethodReturningVoid(RequestOne request) { await LongRunningTask(); }
-			private static Task LongRunningTask() { return null; }
-			public async Task ServiceMethodReturningTask(RequestTwo request) { await LongRunningTask(); }
-			public async Task<object> ServiceMethodReturningTaskOfT(RequestThree request) { await LongRunningTask(); return new Response(); }
+			public async void ServiceMethodReturningVoid(RequestOne request) { await LongRunningTask.Instance(); }
+			public async Task ServiceMethodReturningTask(RequestTwo request) { await LongRunningTask.Instance(); }
+			public async Task<object> ServiceMethodReturningTaskOfT(RequestThree request) { return await LongRunningTask.Instance<object>(); }
+		}
+
+		private class ServiceContainingMethodsThatReturnTasks
+		{
+			public Task ServiceMethodReturningTask(RequestOne request) { return LongRunningTask.Instance(); }
+			public Task<object> ServiceMethodReturningTaskOfT(RequestOne request) { return LongRunningTask.Instance<object>(); }
 		}
 
 		[Route("/requestone")]
@@ -304,6 +309,12 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		public void GetServiceRoutes_CalledWithServiceTypeContainingAsyncServiceMethods_ExpectAsyncServiceMethodsAreNotReturned()
 		{
 			ResolvedServiceRoutesFor<ServiceContainingAsyncServiceMethods>().Should().BeEmpty();
+		}
+
+		[Fact]
+		public void GetServiceRoutes_CalledWithServiceTypeContainingMethodsThatReturnTasks_ExpectTaskBasedMethodsAreNotReturned()
+		{
+			ResolvedServiceRoutesFor<ServiceContainingMethodsThatReturnTasks>().Should().BeEmpty();
 		}
 	}
 

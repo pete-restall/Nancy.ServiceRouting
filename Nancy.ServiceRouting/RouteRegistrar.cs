@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Nancy;
 
 namespace Restall.Nancy.ServiceRouting
@@ -72,17 +75,32 @@ namespace Restall.Nancy.ServiceRouting
 
 		private void WireRoutesByVerb(RegistrationContext context, string verb, NancyModule.RouteBuilder nancyRoutes)
 		{
-			context.RouteTable.GetRoutesForVerb(verb).ForEach(
-				route => nancyRoutes[route.Path] = this.CreateRouteDispatch(context, route));
+			var dispatches = context.RouteTable.GetRoutesForVerb(verb).Select(
+				route => new KeyValuePair<string, Delegate>(route.Path, this.CreateRouteDispatch(context, route))).ToArray();
+
+			WireSyncRoutes(nancyRoutes, dispatches);
+			WireAsyncRoutes(nancyRoutes, dispatches);
 		}
 
-		private Func<object, object> CreateRouteDispatch(RegistrationContext context, Route route)
+		private Delegate CreateRouteDispatch(RegistrationContext context, Route route)
 		{
 			return this.routeDispatchContext(this.routeDispatchBuilder)
 				.WithModule(context.Module)
 				.WithServiceType(context.ServiceType)
 				.WithMethod(route.Method)
 				.Build();
+		}
+
+		private static void WireSyncRoutes(NancyModule.RouteBuilder nancyRoutes, IEnumerable<KeyValuePair<string, Delegate>> dispatches)
+		{
+			dispatches.Where(x => x.Value is Func<object, object>)
+				.ForEach(dispatch => nancyRoutes[dispatch.Key] = (Func<object, object>) dispatch.Value);
+		}
+
+		private static void WireAsyncRoutes(NancyModule.RouteBuilder nancyRoutes, IEnumerable<KeyValuePair<string, Delegate>> dispatches)
+		{
+			dispatches.Where(x => x.Value is Func<object, CancellationToken, Task<object>>)
+				.ForEach(dispatch => nancyRoutes[dispatch.Key, runAsync: true] = (Func<object, CancellationToken, Task<object>>) dispatch.Value);
 		}
 
 		public RouteRegistrar WithDispatchContext(Func<RouteDispatchBuilder, RouteDispatchBuilder> context)

@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Restall.Nancy.ServiceRouting
 {
 	internal static class MethodInfoExtensions
 	{
+		public static int NumberOfParameters(this MethodInfo method)
+		{
+			return method.GetParameters().Length;
+		}
+
 		public static bool IsShadowed(this MethodInfo method, Type mostDerivedType)
 		{
 			return !method.IsVirtual && method.DeclaringType != mostDerivedType && method.GetMethodsWithSameNameAndSignature(mostDerivedType).Any();
@@ -27,7 +33,12 @@ namespace Restall.Nancy.ServiceRouting
 			return method.GetParameters().Select(x => x.ParameterType);
 		}
 
-		public static bool IsAsync(this MethodInfo method)
+		public static bool IsAsyncCallable(this MethodInfo method)
+		{
+			return method.IsAsyncDecorated() || typeof(Task).IsAssignableFrom(method.ReturnType);
+		}
+
+		public static bool IsAsyncDecorated(this MethodInfo method)
 		{
 			return method.GetCustomAttribute<AsyncStateMachineAttribute>() != null;
 		}
