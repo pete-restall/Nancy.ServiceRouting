@@ -64,7 +64,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 
 		public class Response { }
 
-		private const int AsyncSafetyTimeoutSeconds = 5;
+		private const int AsyncSafetyTimeoutSeconds = 10;
 
 		private const int AsyncSafetyTimeoutMilliseconds = AsyncSafetyTimeoutSeconds * 1000;
 
