@@ -12,7 +12,14 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 	public class AggregateServiceRouteResolverTest
 	{
 		[Fact]
-		public void Constructor_CalledWithNullServiceRouteResolvers_ExpectArgumentNullExceptionWithCorrectParamName()
+		public void Constructor_CalledWithNullEnumerableServiceRouteResolvers_ExpectArgumentNullExceptionWithCorrectParamName()
+		{
+			Action constructor = () => new AggregateServiceRouteResolver((IEnumerable<IServiceRouteResolver>) null);
+			constructor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("serviceRouteResolvers");
+		}
+
+		[Fact]
+		public void Constructor_CalledWithNullParamsServiceRouteResolvers_ExpectArgumentNullExceptionWithCorrectParamName()
 		{
 			Action constructor = () => new AggregateServiceRouteResolver(null);
 			constructor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("serviceRouteResolvers");
@@ -66,10 +73,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		public void GetServiceRoutes_CalledMultipleTimes_ExpectEnumerableOfInnerResolversIsOnlyEnumeratedOnce(
 			Type serviceType, Type anotherServiceType)
 		{
-			var innerResolvers = MockRepository.GenerateStub<IEnumerable<IServiceRouteResolver>>();
-			innerResolvers.Expect(x => x.GetEnumerator()).Do(new Func<IEnumerator<IServiceRouteResolver>>(
-				new IServiceRouteResolver[0].AsEnumerable().GetEnumerator));
-
+			var innerResolvers = Mock.Enumerable<IServiceRouteResolver>();
 			var resolver = new AggregateServiceRouteResolver(innerResolvers);
 			resolver.GetServiceRoutes(serviceType).ForEach(x => { });
 			resolver.GetServiceRoutes(anotherServiceType).ForEach(x => { });

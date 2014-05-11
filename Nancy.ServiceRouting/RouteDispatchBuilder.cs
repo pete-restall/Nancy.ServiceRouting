@@ -13,10 +13,11 @@ namespace Restall.Nancy.ServiceRouting
 			public Delegate CreateDispatch()
 			{
 				return this.ServiceMethodInvocation.CreateInvocationDelegate(
-					() => this.ServiceFactory(this.ServiceType),
-					this.CreateRequestBinder(),
 					this.Method,
-					this.DefaultResponse);
+					new ServiceMethodInvocationContext(
+						() => this.ServiceFactory(this.ServiceType),
+						this.CreateRequestBinder(),
+						this.DefaultResponse));
 			}
 
 			private Func<object, object> CreateRequestBinder()

@@ -71,6 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateServiceRouteResolver.cs" />
+    <Compile Include="AsyncVoidServiceMethodInvocation.cs" />
+    <Compile Include="AsyncTaskServiceMethodInvocation.cs" />
+    <Compile Include="AsyncTaskOfTServiceMethodInvocation.cs" />
+    <Compile Include="AsyncServiceMethodCall.cs" />
     <Compile Include="RouteAttributeAsyncServiceRouteResolver.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="InfoOf.cs" />
@@ -83,6 +87,9 @@
     <Compile Include="RouteAttributeSyncServiceRouteResolver.cs" />
     <Compile Include="RouteDispatchBuilder.cs" />
     <Compile Include="RouteRegistrarFactory.cs" />
+    <Compile Include="SyncServiceMethodCall.cs" />
+    <Compile Include="ServiceMethodInvocationChain.cs" />
+    <Compile Include="ServiceMethodInvocationContext.cs" />
     <Compile Include="SyncServiceMethodInvocation.cs" />
     <Compile Include="NancyModelServiceRequestBinder.cs" />
     <Compile Include="Route.cs" />

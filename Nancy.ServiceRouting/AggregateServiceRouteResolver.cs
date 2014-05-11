@@ -8,9 +8,14 @@ namespace Restall.Nancy.ServiceRouting
 	{
 		private readonly IServiceRouteResolver[] serviceRouteResolvers;
 
-		public AggregateServiceRouteResolver(IEnumerable<IServiceRouteResolver> serviceRouteResolvers)
+		public AggregateServiceRouteResolver(IEnumerable<IServiceRouteResolver> serviceRouteResolvers):
+			this(serviceRouteResolvers.ToArray())
 		{
-			this.serviceRouteResolvers = serviceRouteResolvers.ToArray();
+		}
+
+		public AggregateServiceRouteResolver(params IServiceRouteResolver[] serviceRouteResolvers)
+		{
+			this.serviceRouteResolvers = serviceRouteResolvers;
 		}
 
 		public IEnumerable<Route> GetServiceRoutes(Type serviceType)

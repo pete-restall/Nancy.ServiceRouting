@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading.Tasks;
-using NullGuard;
 
 namespace Restall.Nancy.ServiceRouting
 {
@@ -10,16 +8,15 @@ namespace Restall.Nancy.ServiceRouting
 	{
 		public bool CanCreateInvocationDelegateFor(MethodInfo serviceMethod)
 		{
-			return !serviceMethod.IsAsyncDecorated() && serviceMethod.NumberOfParameters() == 1 && !typeof(Task).IsAssignableFrom(serviceMethod.ReturnType);
+			return !serviceMethod.IsAsyncCallable() && !serviceMethod.IsStatic && serviceMethod.NumberOfParameters() == 1;
 		}
 
-		public Delegate CreateInvocationDelegate(
-			Func<object> serviceFactory, Func<object, object> requestBinder, MethodInfo serviceMethod, [AllowNull] object defaultResponse)
+		public Delegate CreateInvocationDelegate(MethodInfo serviceMethod, ServiceMethodInvocationContext context)
 		{
 			if (!this.CanCreateInvocationDelegateFor(serviceMethod))
 			{
 				throw new ArgumentException(
-					"Method " + serviceMethod + " should have a single parameter, not return a Task and not be marked async",
+					"Method " + serviceMethod + " should have a single parameter, not return a Task nor be marked async, and should not be static",
 					"serviceMethod");
 			}
 
@@ -28,27 +25,14 @@ namespace Restall.Nancy.ServiceRouting
 			{
 				return Expression.Lambda<Func<object, object>>(
 					Expression.Block(
-						CreateCallExpression(serviceFactory, requestBinder, serviceMethod, request),
-						Expression.Constant(defaultResponse, typeof(object))),
+						SyncServiceMethodCall.CreateCallExpression(serviceMethod, context, request),
+						Expression.Constant(context.DefaultResponse, typeof(object))),
 					request).Compile();
 			}
 
 			return Expression.Lambda<Func<object, object>>(
-				CreateCallExpression(serviceFactory, requestBinder, serviceMethod, request),
+				SyncServiceMethodCall.CreateCallExpression(serviceMethod, context, request),
 				request).Compile();
-		}
-
-		private static MethodCallExpression CreateCallExpression(
-			Func<object> serviceFactory, Func<object, object> requestBinder, MethodInfo serviceMethod, Expression request)
-		{
-			return Expression.Call(
-				Expression.Convert(
-					Expression.Invoke(Expression.Constant(serviceFactory)),
-					serviceMethod.DeclaringType),
-				serviceMethod,
-				Expression.Convert(
-					Expression.Invoke(Expression.Constant(requestBinder), request),
-					serviceMethod.TypeOfFirstParameter()));
 		}
 	}
 }
