@@ -12,7 +12,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Integration
 {
 	public class AsyncRouteUrlRequestTest
 	{
-		private const int AsyncSafetyTimeoutSeconds = 10;
+		private const int AsyncSafetyTimeoutSeconds = 30;
 
 		private const int AsyncSafetyTimeoutMilliseconds = AsyncSafetyTimeoutSeconds * 1000;
 
