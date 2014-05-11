@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 
-namespace Restall.Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting.Async
 {
 	public class RouteAttributeAsyncServiceRouteResolver: RouteAttributeServiceRouteResolver
 	{

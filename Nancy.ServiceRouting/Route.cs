@@ -12,7 +12,9 @@ namespace Restall.Nancy.ServiceRouting
 		}
 
 		public string Verb { get; private set; }
+
 		public string Path { get; private set; }
+
 		public MethodInfo Method { get; private set; }
 	}
 }

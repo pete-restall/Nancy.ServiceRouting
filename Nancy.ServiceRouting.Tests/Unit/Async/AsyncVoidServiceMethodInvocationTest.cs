@@ -1,14 +1,15 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Restall.Nancy.ServiceRouting.Async;
 using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 using Rhino.Mocks;
 using Xunit;
 using Xunit.Extensions;
 
-namespace Restall.Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 {
 	#pragma warning disable 4014
 

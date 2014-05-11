@@ -1,9 +1,9 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Restall.Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting.Sync
 {
-	internal class SyncServiceMethodCall
+	internal static class SyncServiceMethodCall
 	{
 		public static MethodCallExpression CreateCallExpression(
 			MethodInfo serviceMethod, ServiceMethodInvocationContext context, ParameterExpression request)

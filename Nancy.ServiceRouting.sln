@@ -7,13 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.ServiceRouting.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Demo.ServiceRouting", "Nancy.Demo.ServiceRouting\Nancy.Demo.ServiceRouting.csproj", "{3D4BF6A6-E300-4643-8916-2D8D00CCDAC1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{88187A97-8242-47D3-9175-F1C448613AB4}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.config = .nuget\NuGet.config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ECBE4F54-10F5-4FF6-A3A7-4690AC1A8BD9}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
@@ -42,6 +35,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1A84268-B7B2-4FC3-AB45-1A1A85FE9045} = {88187A97-8242-47D3-9175-F1C448613AB4}
+		{88187A97-8242-47D3-9175-F1C448613AB4} = {ECBE4F54-10F5-4FF6-A3A7-4690AC1A8BD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .

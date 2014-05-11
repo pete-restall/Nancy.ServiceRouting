@@ -1,16 +1,17 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Restall.Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting.Async
 {
-	public class AsyncVoidServiceMethodInvocation: IServiceMethodInvocation
+	public class AsyncTaskServiceMethodInvocation: IServiceMethodInvocation
 	{
 		public bool CanCreateInvocationDelegateFor(MethodInfo serviceMethod)
 		{
-			return serviceMethod.ReturnType == typeof(void) && serviceMethod.IsAsyncDecorated() && !serviceMethod.IsStatic &&
+			return
+				serviceMethod.ReturnType == typeof(Task) && serviceMethod.IsAsyncCallable() && !serviceMethod.IsStatic &&
 				(serviceMethod.NumberOfParameters() == 1 ||
 				(serviceMethod.NumberOfParameters() == 2 && serviceMethod.TypeOfSecondParameter() == typeof(CancellationToken)));
 		}
@@ -26,17 +27,17 @@ namespace Restall.Nancy.ServiceRouting
 
 			ParameterExpression request = Expression.Parameter(typeof(object), "request");
 			ParameterExpression cancel = Expression.Parameter(typeof(CancellationToken), "cancel");
-			Action<object, CancellationToken> lambda = Expression.Lambda<Action<object, CancellationToken>>(
+			Func<object, CancellationToken, Task> lambda = Expression.Lambda<Func<object, CancellationToken, Task>>(
 				serviceMethod.NumberOfParameters() == 1?
 					AsyncServiceMethodCall.CreateCallExpression(serviceMethod, context, request):
 					AsyncServiceMethodCall.CreateCallExpression(serviceMethod, context, request, cancel),
 				request,
 				cancel).Compile();
 
-			return new Func<object, CancellationToken, Task<object>>((r, c) =>
+			return new Func<object, CancellationToken, Task<object>>(async (r, c) =>
 				{
-					lambda(r, c);
-					return TaskEx.FromResult(context.DefaultResponse);
+					await lambda(r, c);
+					return context.DefaultResponse;
 				});
 		}
 	}

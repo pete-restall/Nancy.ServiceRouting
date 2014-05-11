@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Restall.Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting.Sync
 {
 	public class SyncServiceMethodInvocation: IServiceMethodInvocation
 	{

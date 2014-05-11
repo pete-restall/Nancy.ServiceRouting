@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using Nancy;
+using Restall.Nancy.ServiceRouting.Sync;
 using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 using Rhino.Mocks;
 using Xunit;

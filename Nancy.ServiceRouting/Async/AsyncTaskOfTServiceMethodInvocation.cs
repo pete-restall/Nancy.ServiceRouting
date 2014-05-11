@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Restall.Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting.Async
 {
 	public class AsyncTaskOfTServiceMethodInvocation: IServiceMethodInvocation
 	{

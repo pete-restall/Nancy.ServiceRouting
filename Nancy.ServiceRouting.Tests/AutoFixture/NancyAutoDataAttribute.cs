@@ -3,6 +3,7 @@ using System.Reflection;
 using Nancy;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Xunit;
+using Restall.Nancy.ServiceRouting.Sync;
 using Rhino.Mocks;
 
 namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture

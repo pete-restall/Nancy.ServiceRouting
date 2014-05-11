@@ -1,4 +1,6 @@
 ﻿using System;
+using Restall.Nancy.ServiceRouting.Async;
+using Restall.Nancy.ServiceRouting.Sync;
 
 namespace Restall.Nancy.ServiceRouting
 {

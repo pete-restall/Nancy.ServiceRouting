@@ -1,9 +1,10 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using System.Reflection;
+using Restall.Nancy.ServiceRouting.Sync;
 
-namespace Restall.Nancy.ServiceRouting
+namespace Restall.Nancy.ServiceRouting.Async
 {
-	internal class AsyncServiceMethodCall
+	internal static class AsyncServiceMethodCall
 	{
 		public static MethodCallExpression CreateCallExpression(
 			MethodInfo serviceMethod, ServiceMethodInvocationContext context, ParameterExpression request)

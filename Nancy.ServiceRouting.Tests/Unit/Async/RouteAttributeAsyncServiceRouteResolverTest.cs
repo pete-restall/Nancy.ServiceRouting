@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Restall.Nancy.ServiceRouting.Async;
 using Xunit;
 
-namespace Restall.Nancy.ServiceRouting.Tests.Unit
+namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 {
 	#pragma warning disable 4014
 

@@ -12,7 +12,6 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -134,15 +133,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="Unit\AggregateServiceRouteResolverTest.cs" />
-    <Compile Include="Unit\AsyncVoidServiceMethodInvocationTest.cs" />
-    <Compile Include="Unit\AsyncTaskServiceMethodInvocationTest.cs" />
-    <Compile Include="Unit\AsyncTaskOfTServiceMethodInvocationTest.cs" />
+    <Compile Include="Unit\Async\AsyncTaskOfTServiceMethodInvocationTest.cs" />
+    <Compile Include="Unit\Async\AsyncTaskServiceMethodInvocationTest.cs" />
+    <Compile Include="Unit\Async\AsyncVoidServiceMethodInvocationTest.cs" />
+    <Compile Include="Unit\Async\RouteAttributeAsyncServiceRouteResolverTest.cs" />
     <Compile Include="Unit\Mock.cs" />
-    <Compile Include="Unit\RouteAttributeAsyncServiceRouteResolverTest.cs" />
     <Compile Include="Unit\NancyModelServiceRequestBinderTest.cs" />
     <Compile Include="Unit\EnumerableExtensionsTest.cs" />
     <Compile Include="Unit\InfoOfTest.cs" />
-    <Compile Include="Unit\RouteAttributeSyncServiceRouteResolverTest.cs" />
     <Compile Include="Unit\RouteDispatchBuilderTest.cs" />
     <Compile Include="Unit\RouteRegistrarTest.cs" />
     <Compile Include="Unit\RouteAttributeTest.cs" />
@@ -151,10 +149,11 @@
     <Compile Include="Unit\ServiceMethodInvocationChainTest.cs" />
     <Compile Include="Unit\ServiceMethodInvocationContextTest.cs" />
     <Compile Include="Unit\Stub.cs" />
-    <Compile Include="Unit\SyncServiceMethodInvocationTest.cs" />
     <Compile Include="Unit\ServiceRouteEnumerableAssertionExtensions.cs" />
     <Compile Include="Unit\RouteTest.cs" />
     <Compile Include="Unit\StubNancyModelBinding.cs" />
+    <Compile Include="Unit\Sync\RouteAttributeSyncServiceRouteResolverTest.cs" />
+    <Compile Include="Unit\Sync\SyncServiceMethodInvocationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nancy.ServiceRouting\Nancy.ServiceRouting.csproj">
@@ -168,13 +167,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />

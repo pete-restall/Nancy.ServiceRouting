@@ -10,7 +10,7 @@ namespace Restall.Nancy.ServiceRouting
 		public RouteAttribute(string path, params string[] verbs)
 		{
 			this.Path = path;
-			this.Verbs = verbs.Length > 0 ? verbs.Select(x => x.Trim().ToUpper()).ToArray() : new[] {"GET"};
+			this.Verbs = verbs.Length > 0? verbs.Select(x => x.Trim().ToUpper()).ToArray(): new[] {"GET"};
 		}
 
 		public string Path { get; private set; }
