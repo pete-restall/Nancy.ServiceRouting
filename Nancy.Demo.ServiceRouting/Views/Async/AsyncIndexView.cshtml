@@ -1,0 +1,18 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<AsyncIndex>
+<div id="asyncDemoContainer">
+	<p>This is the Async Demo.  You can start some long-running (1 minute) timers and stop them via the form below.</p>
+	<p>Note that the number of requests is limited by the number of concurrent AJAX requests supported by your browser - going above 4 may cause weirdness...</p>
+	<div><button data-bind="click: startTimer">Start New Timer</button></div>
+	<div><select data-bind="options: timerIds, value: selectedTimerId" size="10" style="width: 64ex"></select></div>
+	<div><button data-bind="click: stopTimer">Stop Selected Timer</button></div>
+	<div data-bind="template: {name: 'resultTemplate', foreach: results, as: 'result'}">
+	</div>
+	<script type="text/html" id="resultTemplate">
+		<span data-bind="text: result"></span><br />
+	</script>
+	<script type="text/javascript">
+		<!--
+		ko.applyBindings(new Nancy.Demo.ServiceRouting.AsyncIndexViewModel(), $('#asyncDemoContainer')[0]);
+		// -->
+	</script>
+</div>

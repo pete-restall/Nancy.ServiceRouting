@@ -8,7 +8,8 @@
 				{
 					AvailableDemos = new[]
 						{
-							new AvailableDemo { Href = "/greet", Title = "Simple Greeting Request / Response" }
+							new AvailableDemo { Href = "/greet", Title = "Simple Greeting Request / Response" },
+							new AvailableDemo { Href = "/async", Title = "Async Functionality" }
 						}
 				};
 		}

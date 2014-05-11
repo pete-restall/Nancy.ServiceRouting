@@ -85,6 +85,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\js\Async\AsyncIndexViewModel.js" />
     <Content Include="assets\js\jquery-2.1.0.min.js" />
     <Content Include="assets\js\knockout-3.1.0.js" />
     <Content Include="assets\styles\demo.css" />
@@ -92,12 +93,18 @@
     <Content Include="Views\Greet\GreetingView.cshtml" />
     <Content Include="assets\js\IndexResponseViewModel.js" />
     <Content Include="assets\js\Greet\GreetIndexViewModel.js" />
+    <Content Include="Views\Async\AsyncIndexView.cshtml" />
     <None Include="Views\IndexResponseView.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllTypes.cs" />
     <Compile Include="ApiModule.cs" />
+    <Compile Include="Api\Async\AsyncIndex.cs" />
+    <Compile Include="Api\Async\AsyncService.cs" />
+    <Compile Include="Api\Async\AsyncTimerResponse.cs" />
+    <Compile Include="Api\Async\AsyncTimerStartRequest.cs" />
+    <Compile Include="Api\Async\AsyncTimerStopRequest.cs" />
     <Compile Include="Api\AvailableDemo.cs" />
     <Compile Include="Api\Greet\GreetIndex.cs" />
     <Compile Include="Api\Greet\Greeting.cs" />
