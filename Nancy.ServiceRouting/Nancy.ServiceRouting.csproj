@@ -75,6 +75,7 @@
     <Compile Include="Async\AsyncTaskServiceMethodInvocation.cs" />
     <Compile Include="Async\AsyncVoidServiceMethodInvocation.cs" />
     <Compile Include="Async\RouteAttributeAsyncServiceRouteResolver.cs" />
+    <Compile Include="ServiceRequestBinderChain.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="InfoOf.cs" />
     <Compile Include="IServiceMethodInvocation.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="RouteRegistrar.cs" />
     <Compile Include="RouteTable.cs" />
     <Compile Include="RouteTableBuilder.cs" />
+    <Compile Include="ServiceRequestBinderContext.cs" />
     <Compile Include="Sync\RouteAttributeSyncServiceRouteResolver.cs" />
     <Compile Include="Sync\SyncServiceMethodCall.cs" />
     <Compile Include="Sync\SyncServiceMethodInvocation.cs" />

@@ -137,8 +137,10 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			requestMessageBinderDelegate.Stub(x => x(Arg<object>.Is.Same(request))).Return(message);
 
 			var requestMessageBinder = MockRepository.GenerateStub<IServiceRequestBinder>();
-			requestMessageBinder.Stub(x => x.CreateBindingDelegate(Arg<NancyModule>.Is.Same(module), Arg<Type>.Is.Equal(typeof(Request))))
-				.Return(requestMessageBinderDelegate);
+			requestMessageBinder.Stub(x => x.CreateBindingDelegate(
+				Arg<Type>.Is.Equal(typeof(Request)),
+				Arg<ServiceRequestBinderContext>.Matches(ctx => ReferenceEquals(ctx.NancyModule, module))))
+					.Return(requestMessageBinderDelegate);
 
 			var service = MockRepository.GenerateStub<StubService>();
 			service.Stub(x => x.ServiceMethod(Arg<Request>.Is.Same(message))).Return(response);
@@ -183,7 +185,9 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		private static IServiceRequestBinder StubRequestMessageBinderToReturn(Request request)
 		{
 			var requestMessageBinder = MockRepository.GenerateStub<IServiceRequestBinder>();
-			requestMessageBinder.Stub(x => x.CreateBindingDelegate(Arg<NancyModule>.Is.Anything, Arg<Type>.Is.Anything)).Return(x => request);
+			requestMessageBinder.Stub(x => x.CreateBindingDelegate(
+				Arg<Type>.Is.Anything, Arg<ServiceRequestBinderContext>.Is.Anything)).Return(x => request);
+
 			return requestMessageBinder;
 		}
 

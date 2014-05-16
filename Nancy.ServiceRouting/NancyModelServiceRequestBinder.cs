@@ -19,14 +19,22 @@ namespace Restall.Nancy.ServiceRouting
 			this.nancyModelBinder = InfoOf.Method(nancyModelBindingExpression).GetGenericMethodDefinition();
 		}
 
-		public Func<object, object> CreateBindingDelegate(NancyModule module, Type requestType)
+		public bool CanCreateBindingDelegateFor(Type requestType)
 		{
+			return !(requestType.IsAbstract || requestType.IsGenericTypeDefinition);
+		}
+
+		public Func<object, object> CreateBindingDelegate(Type requestType, ServiceRequestBinderContext context)
+		{
+			if (!this.CanCreateBindingDelegateFor(requestType))
+				throw new ArgumentException("Type " + requestType + " should be a concrete class", "requestType");
+
 			MethodInfo binder = this.nancyModelBinder.MakeGenericMethod(requestType);
 			ParameterExpression requestParameters = Expression.Parameter(typeof(object), "requestParameters");
 			return Expression.Lambda<Func<object, object>>(
 				Expression.Call(
 					binder,
-					Expression.Constant(module, typeof(NancyModule))),
+					Expression.Constant(context.NancyModule, typeof(NancyModule))),
 				requestParameters).Compile();
 		}
 	}

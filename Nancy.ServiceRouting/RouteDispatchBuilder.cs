@@ -22,7 +22,9 @@ namespace Restall.Nancy.ServiceRouting
 
 			private Func<object, object> CreateRequestBinder()
 			{
-				return this.RequestMessageBinder.CreateBindingDelegate(this.Module, this.Method.TypeOfFirstParameter());
+				return this.RequestMessageBinder.CreateBindingDelegate(
+					this.Method.TypeOfFirstParameter(),
+					new ServiceRequestBinderContext(this.Module));
 			}
 
 			public Func<Type, object> ServiceFactory;

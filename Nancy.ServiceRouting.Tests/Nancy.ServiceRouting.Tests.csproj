@@ -137,6 +137,7 @@
     <Compile Include="Unit\Async\AsyncTaskServiceMethodInvocationTest.cs" />
     <Compile Include="Unit\Async\AsyncVoidServiceMethodInvocationTest.cs" />
     <Compile Include="Unit\Async\RouteAttributeAsyncServiceRouteResolverTest.cs" />
+    <Compile Include="Unit\ServiceRequestBinderChainTest.cs" />
     <Compile Include="Unit\Mock.cs" />
     <Compile Include="Unit\NancyModelServiceRequestBinderTest.cs" />
     <Compile Include="Unit\EnumerableExtensionsTest.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Unit\RouteTableTest.cs" />
     <Compile Include="Unit\ServiceMethodInvocationChainTest.cs" />
     <Compile Include="Unit\ServiceMethodInvocationContextTest.cs" />
+    <Compile Include="Unit\ServiceRequestBinderContextTest.cs" />
     <Compile Include="Unit\Stub.cs" />
     <Compile Include="Unit\ServiceRouteEnumerableAssertionExtensions.cs" />
     <Compile Include="Unit\RouteTest.cs" />
