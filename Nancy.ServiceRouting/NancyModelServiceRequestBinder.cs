@@ -21,7 +21,7 @@ namespace Restall.Nancy.ServiceRouting
 
 		public bool CanCreateBindingDelegateFor(Type requestType)
 		{
-			return !(requestType.IsAbstract || requestType.IsGenericTypeDefinition);
+			return requestType.IsConcrete();
 		}
 
 		public Func<object, object> CreateBindingDelegate(Type requestType, ServiceRequestBinderContext context)

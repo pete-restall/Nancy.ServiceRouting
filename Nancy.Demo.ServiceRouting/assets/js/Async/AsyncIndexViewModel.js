@@ -20,7 +20,7 @@ Nancy.Demo.ServiceRouting = Nancy.Demo.ServiceRouting || {};
 		return ((value < 10) ? '0' : '') + value;
 	};
 
-	var threeDecimals = function (value) {
+	var threeDecimals = function(value) {
 		return ((value < 10) ? '00' : (value < 100) ? '0' : '') + value;
 	};
 
@@ -36,12 +36,15 @@ Nancy.Demo.ServiceRouting = Nancy.Demo.ServiceRouting || {};
 			dataType: 'json',
 			error: function (xhr, status, message) {
 				vm.results.push('[START ERROR] ' + message);
+				vm.timerIds.remove(timerId);
 			},
-			success: function(data) {
+			success: function (data) {
 				vm.results.push(
 					'--> Timer ' + data.id +
 					' ran for ' + twoDecimals(data.minutes) + ':' + twoDecimals(data.seconds) + '.' + threeDecimals(data.milliseconds) +
 					', using threads ' + data.startedOnThread + ' and ' + data.endedOnThread);
+
+				vm.timerIds.remove(timerId);
 			}
 		});
 	};
@@ -53,6 +56,7 @@ Nancy.Demo.ServiceRouting = Nancy.Demo.ServiceRouting || {};
 			return;
 
 		vm.timerIds.remove(timerId);
+
 		$.ajax({
 			method: 'GET',
 			url: '/async/timer/' + timerId + '/stop',

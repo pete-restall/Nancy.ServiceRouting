@@ -13,6 +13,6 @@
 		<description>$description$</description>
 		<releaseNotes>Asynchronous Routing Support.</releaseNotes>
 		<copyright>Copyright Pete Restall 2014</copyright>
-		<tags>nancy nancyfx routing route routes web service services</tags>
+		<tags>nancy nancyfx routing route routes router web service services</tags>
 	</metadata>
 </package>
