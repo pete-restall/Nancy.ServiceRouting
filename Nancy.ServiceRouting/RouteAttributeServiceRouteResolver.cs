@@ -22,7 +22,7 @@ namespace Restall.Nancy.ServiceRouting
 		{
 			return methods
 				.SelectMany(x => x.TypeOfFirstParameter().GetCustomAttributes<RouteAttribute>(), (mth, att) => new { Attribute = att, Method = mth })
-				.SelectMany(x => x.Attribute.Verbs.Select(v => new Route(v, x.Attribute.Path, x.Method)));
+				.SelectMany(x => x.Attribute.WireToMethod(x.Method));
 		}
 
 		protected abstract IEnumerable<MethodInfo> GetServiceMethodsFrom(Type serviceType);

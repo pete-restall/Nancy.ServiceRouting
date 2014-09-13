@@ -2,7 +2,7 @@
 
 namespace Restall.Nancy.Demo.ServiceRouting.Api.Greet
 {
-	[Route("/greet")]
+	[NamedRoute("GreetIndex", "/greet")]
 	public class GreetIndex
 	{
 	}

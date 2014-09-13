@@ -38,16 +38,11 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 
 		[Theory, NancyAutoData]
 		public void GetRoutesForVerb_Called_ExpectOnlyRoutesMatchingVerbAreReturned(
-			Route[] mixedVerbRoutes, string verb, string[] routes)
+			Route[] mixedVerbRoutes, string verb, string[] routes, MethodInfo method)
 		{
-			var specificVerbRoutes = routes.Select(x => new Route(verb, x, DummyMethodInfo)).ToArray();
+			var specificVerbRoutes = routes.Select(x => new Route(verb, x, method)).ToArray();
 			var table = new RouteTable(mixedVerbRoutes.Concat(specificVerbRoutes).Shuffle());
 			table.GetRoutesForVerb(verb).Should().BeEquivalentTo(specificVerbRoutes);
-		}
-
-		private static MethodInfo DummyMethodInfo
-		{
-			get { return InfoOf.Method<object>(x => x.ToString()); }
 		}
 	}
 }

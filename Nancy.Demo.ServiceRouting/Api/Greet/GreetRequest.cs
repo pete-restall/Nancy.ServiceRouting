@@ -6,6 +6,6 @@ namespace Restall.Nancy.Demo.ServiceRouting.Api.Greet
 	[Route("/greet", "PUT")]
 	public class GreetRequest
 	{
-		public string Name { get; set; }
+		public string Name { get; private set; }
 	}
 }

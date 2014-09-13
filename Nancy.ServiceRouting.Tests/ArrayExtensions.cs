@@ -21,5 +21,10 @@ namespace Restall.Nancy.ServiceRouting.Tests
 		{
 			return RandomNumbers.Next(1, source.Length);
 		}
+
+		public static T TakeAnyItem<T>(this T[] source)
+		{
+			return source.Shuffle().First();
+		}
 	}
 }

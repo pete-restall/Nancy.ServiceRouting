@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using FluentAssertions;
 using Restall.Nancy.ServiceRouting.Tests.AutoFixture;
 using Xunit;
@@ -23,6 +24,20 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 		{
 			Action constructor = () => new RouteAttribute(path, null);
 			constructor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("verbs");
+		}
+
+		[Theory, NancyAutoData]
+		public void WireToMethod_CalledWithNullMethod_ExpectArgumentNullExceptionWithCorrectParamName(RouteAttribute attribute)
+		{
+			attribute.Invoking(x => x.WireToMethod(null))
+				.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("method");
+		}
+
+		[Theory, NancyAutoData]
+		public void WireToMethod_Called_ExpectNamelessRoutesAreReturnedWithSamePathAndMethodForEachVerb(string path, MethodInfo method)
+		{
+			var attribute = new RouteAttribute(path, Verbs.TakeAtLeastOneItem());
+			attribute.WireToMethod(method).ShouldBeEquivalentTo(attribute.Verbs.Select(v => new Route(v, attribute.Path, method)));
 		}
 
 		[Theory, NancyAutoData]

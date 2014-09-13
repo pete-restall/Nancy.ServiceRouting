@@ -13,5 +13,15 @@ namespace Restall.Nancy.ServiceRouting.Tests
 				BindingFlags.NonPublic | BindingFlags.Public |
 				BindingFlags.SetProperty | BindingFlags.GetProperty);
 		}
+
+		public static bool Inherits<T>(this Type type)
+		{
+			return type != typeof(T) && type.BaseType.InheritsOrIs<T>();
+		}
+
+		private static bool InheritsOrIs<T>(this Type type)
+		{
+			return type != null && (type == typeof(T) || type.BaseType.InheritsOrIs<T>());
+		}
 	}
 }

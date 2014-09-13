@@ -28,7 +28,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 
 		private static bool AreRoutesEqual(Route x, Route y)
 		{
-			return x.Verb == y.Verb && x.Path == y.Path && x.Method.MetadataToken == y.Method.MetadataToken;
+			return x.Name == y.Name && x.Verb == y.Verb && x.Path == y.Path && x.Method.MetadataToken == y.Method.MetadataToken;
 		}
 	}
 }

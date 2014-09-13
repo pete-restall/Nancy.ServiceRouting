@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Restall.Nancy.ServiceRouting
 {
@@ -16,5 +17,10 @@ namespace Restall.Nancy.ServiceRouting
 		public string Path { get; private set; }
 
 		public IEnumerable<string> Verbs { get; private set; }
+
+		public virtual IEnumerable<Route> WireToMethod(MethodInfo method)
+		{
+			return this.Verbs.Select(v => new Route(v, this.Path, method));
+		}
 	}
 }

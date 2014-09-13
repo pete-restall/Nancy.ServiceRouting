@@ -2,7 +2,7 @@
 
 namespace Restall.Nancy.Demo.ServiceRouting.Api.Async
 {
-	[Route("/async")]
+	[NamedRoute("AsyncIndex", "/async")]
 	public class AsyncIndex
 	{
 	}

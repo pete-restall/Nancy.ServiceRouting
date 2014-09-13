@@ -27,7 +27,7 @@ namespace Restall.Nancy.ServiceRouting
 		public Func<object, object> CreateBindingDelegate(Type requestType, ServiceRequestBinderContext context)
 		{
 			if (!this.CanCreateBindingDelegateFor(requestType))
-				throw new ArgumentException("Type " + requestType + " should be a concrete class", "requestType");
+				throw new ArgumentException("Type " + requestType + " must be a concrete class", "requestType");
 
 			MethodInfo binder = this.nancyModelBinder.MakeGenericMethod(requestType);
 			ParameterExpression requestParameters = Expression.Parameter(typeof(object), "requestParameters");

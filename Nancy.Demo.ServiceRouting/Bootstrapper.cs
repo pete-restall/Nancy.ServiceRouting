@@ -8,9 +8,10 @@ namespace Restall.Nancy.Demo.ServiceRouting
 {
 	public class Bootstrapper: DefaultNancyBootstrapper
 	{
-		protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+		protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
 		{
-			base.ConfigureApplicationContainer(container);
+			base.ConfigureRequestContainer(container, context);
+			container.Register((ctx, args) => context);
 			container.Register((ctx, args) => RouteRegistrarFactory.CreateDefaultInstance(ctx.Resolve));
 		}
 
