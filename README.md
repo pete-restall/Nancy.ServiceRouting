@@ -14,7 +14,7 @@ Methods that are dispatched both Synchronously and Asynchronously, as well
 as Named Routes that are handy for building URIs automatically without
 scattering magic strings throughout your code and Views.
 
-See the [Wiki]((https://github.com/pete-restall/Nancy.ServiceRouting/wiki)
+See the [Wiki](https://github.com/pete-restall/Nancy.ServiceRouting/wiki)
 for further documentation.
 
 # Why use this ?
@@ -46,6 +46,19 @@ ServiceStack's Wiki also has some
 like
 [Nancy.ServiceRouting](https://github.com/pete-restall/Nancy.ServiceRouting/)
 offers.
+
+# Features
+* Allows a more SOLID approach to web services with Nancy - [NancyModules](https://github.com/NancyFx/Nancy/wiki/Exploring-the-nancy-module) are effectively reduced to defining Conventions that discover groups of Services
+* Attribute-based Routing for declaratively associating DTOs with HTTP Paths and Verbs
+* Convention-based discovery of Routes and Services
+* Supports a variety of method signatures for Synchronous and Asynchronous dispatch of Service calls, including the <em>async</em> keyword
+* Named Routes allow easy construction of URIs to Services in a maintainable way, without scattering magic path segments throughout code and Views
+* Dependency Injection for Services using Nancy's IoC container by default - but easily customisable to be an arbitrary Factory
+* Customisable discovery, registration and dispatch semantics
+* Compatible with the .NET 4.0 Client Profile
+* Uses Nancy's existing [Model Binding](https://github.com/NancyFx/Nancy/wiki/Model-binding) functionality by default, but this can be easily customised
+* Utilises Nancy's existing Request Pipeline - Pre- and Post-Request Event Hooks are still available to use
+* No configuration required - all the magic can be wired in via trivial code in the [Bootstrapper](https://github.com/NancyFx/Nancy/wiki/Bootstrapper) and [NancyModule](https://github.com/NancyFx/Nancy/wiki/Exploring-the-nancy-module)
 
 # In a Nutshell
 Set up your IoC container in your
