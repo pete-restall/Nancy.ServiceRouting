@@ -1,1 +1,6 @@
 .svn
+packages
+*.user
+*.suo
+bin
+obj
