@@ -65,21 +65,22 @@ namespace Restall.Nancy.ServiceRouting
 					RouteTable = this.routeTableBuilder.ForService(serviceType).Build()
 				};
 
-			this.WireRoutesByVerb(context, "GET", module.Get);
-			this.WireRoutesByVerb(context, "PUT", module.Put);
-			this.WireRoutesByVerb(context, "POST", module.Post);
-			this.WireRoutesByVerb(context, "DELETE", module.Delete);
-			this.WireRoutesByVerb(context, "PATCH", module.Patch);
-			this.WireRoutesByVerb(context, "OPTIONS", module.Options);
+			this.WireAllRoutes(context);
 		}
 
-		private void WireRoutesByVerb(RegistrationContext context, string verb, NancyModule.RouteBuilder nancyRoutes)
+		private void WireAllRoutes(RegistrationContext context)
 		{
-			var dispatches = context.RouteTable.GetRoutesForVerb(verb).Select(
-				route => new KeyValuePair<Route, Delegate>(route, this.CreateRouteDispatch(context, route))).ToArray();
+			var dispatchesGroupedByVerb = context.RouteTable.GetRoutesForAllVerbs()
+				.Select(route => new KeyValuePair<Route, Delegate>(route, this.CreateRouteDispatch(context, route)))
+				.GroupBy(dispatch => dispatch.Key.Verb)
+				.ToArray();
 
-			WireSyncRoutes(nancyRoutes, dispatches);
-			WireAsyncRoutes(nancyRoutes, dispatches);
+			dispatchesGroupedByVerb.ForEach(dispatchesForVerb =>
+			{
+				var routeBuilder = new NancyModule.RouteBuilder(dispatchesForVerb.Key, context.Module);
+				WireSyncRoutes(routeBuilder, dispatchesForVerb);
+				WireAsyncRoutes(routeBuilder, dispatchesForVerb);
+			});
 		}
 
 		private Delegate CreateRouteDispatch(RegistrationContext context, Route route)

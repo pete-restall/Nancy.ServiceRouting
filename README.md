@@ -84,10 +84,10 @@ to help keep with Nancy's super-duper-happy-path by providing sensible defaults:
     }
 ```
 
-Create your DTOs and decorate them with your routes:
+Create your DTOs and decorate them with your routes (custom verbs are supported):
 
 ```C#
-    [Route("/some/{awesome}/route", "GET", "PUT", ...)]
+    [Route("/some/{awesome}/route", "GET", "PUT", "MANGLE", ...)]
     public class RequestDto
     {
         public int Awesome { get; set; }
