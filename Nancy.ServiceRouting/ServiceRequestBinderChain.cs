@@ -30,7 +30,7 @@ namespace Restall.Nancy.ServiceRouting
 			{
 				throw new ArgumentException(
 					"Type " + requestType + " cannot be bound from a request to a DTO as its type is unknown",
-					"requestType");
+					nameof(requestType));
 			}
 
 			return binder.CreateBindingDelegate(requestType, context);

@@ -31,7 +31,7 @@ namespace Restall.Nancy.ServiceRouting
 			{
 				throw new ArgumentException(
 					"Method " + serviceMethod + " cannot be invoked as a Service Method as its signature is unknown",
-					"serviceMethod");
+					nameof(serviceMethod));
 			}
 
 			return invocation.CreateInvocationDelegate(serviceMethod, context);

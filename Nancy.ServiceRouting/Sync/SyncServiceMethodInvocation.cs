@@ -17,7 +17,7 @@ namespace Restall.Nancy.ServiceRouting.Sync
 			{
 				throw new ArgumentException(
 					"Method " + serviceMethod + " should have a single parameter, not return a Task nor be marked async, and should not be static",
-					"serviceMethod");
+					nameof(serviceMethod));
 			}
 
 			ParameterExpression request = Expression.Parameter(typeof(object), "request");

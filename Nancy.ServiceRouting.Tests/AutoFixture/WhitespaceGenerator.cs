@@ -21,9 +21,6 @@ namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture
 			get { while (true) yield return AnyWhitespaceCharacter; }
 		}
 
-		private static char AnyWhitespaceCharacter
-		{
-			get { return Whitespace[RandomNumbers.Next(0, Whitespace.Length)]; }
-		}
+		private static char AnyWhitespaceCharacter => Whitespace[RandomNumbers.Next(0, Whitespace.Length)];
 	}
 }

@@ -12,9 +12,6 @@ namespace Restall.Nancy.ServiceRouting.Tests.AutoFixture
 			return Generator.Next(min, halfOpenMax);
 		}
 
-		private static Random Generator
-		{
-			get { return random ?? (random = new Random()); }
-		}
+		private static Random Generator => random ?? (random = new Random());
 	}
 }

@@ -26,15 +26,9 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			get { return x => new object(); }
 		}
 
-		private static IServiceRequestBinder DummyRequestMessageBinder
-		{
-			get { return MockRepository.GenerateStub<IServiceRequestBinder>(); }
-		}
+		private static IServiceRequestBinder DummyRequestMessageBinder => MockRepository.GenerateStub<IServiceRequestBinder>();
 
-		private static IServiceMethodInvocation DummyServiceMethodInvocation
-		{
-			get { return MockRepository.GenerateStub<IServiceMethodInvocation>(); }
-		}
+		private static IServiceMethodInvocation DummyServiceMethodInvocation => MockRepository.GenerateStub<IServiceMethodInvocation>();
 
 		[Theory, NancyAutoData]
 		public void Constructor_CalledWithNullRouteDispatchBuilder_ExpectArgumentNullExceptionWithCorrectParamName(

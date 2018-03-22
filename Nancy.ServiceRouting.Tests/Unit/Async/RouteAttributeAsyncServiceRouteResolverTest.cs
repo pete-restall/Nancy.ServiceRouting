@@ -87,7 +87,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 
 		private class ServiceContainingImplementationsOfAbstractServiceMethods: AbstractService
 		{
-			public async override Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
+			public override async Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceContainingImplementationsOfInterfaceServiceMethods: IService
@@ -98,7 +98,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 
 		private class ServiceContainingShadowServiceMethods: GenericService<RequestOne>
 		{
-			public async new Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
+			public new async Task<Response> ServiceMethod(RequestOne request) { return await LongRunningTask.Instance<Response>(); }
 		}
 
 		private class ServiceUsingDtoDecoratedWithMultipleRoutes

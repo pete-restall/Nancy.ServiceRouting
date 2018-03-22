@@ -16,7 +16,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			actualRoutes.ToArray().ShouldBeEquivalentTo(expectedRoutes.ToArray());
 		}
 
-		public static void ShouldBeEquivalentTo(this Route[] actualRoutes, Route[] expectedRoutes)
+		private static void ShouldBeEquivalentTo(this Route[] actualRoutes, Route[] expectedRoutes)
 		{
 			actualRoutes.Length.Should().Be(expectedRoutes.Length, " collections should be equivalent");
 			foreach (var expectedRoute in expectedRoutes)

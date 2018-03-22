@@ -17,13 +17,13 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 	{
 		public class StubService
 		{
-			public async virtual Task AsyncDecoratedMethodWithTaskResponse(Request request)
+			public virtual async Task AsyncDecoratedMethodWithTaskResponse(Request request)
 				{ await LongRunningTask.Instance(); }
 
 			public virtual Task NonAsyncDecoratedMethodWithTaskResponse(Request request)
 				{ return LongRunningTask.Instance(); }
 
-			public async virtual Task AsyncDecoratedMethodWithCancellationTokenAndTaskResponse(Request request, CancellationToken cancel)
+			public virtual async Task AsyncDecoratedMethodWithCancellationTokenAndTaskResponse(Request request, CancellationToken cancel)
 				{ await LongRunningTask.Instance(); }
 
 			public virtual Task NonAsyncDecoratedMethodWithCancellationTokenAndTaskResponse(Request request, CancellationToken cancel)
@@ -32,10 +32,10 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 
 		private class StubServiceUnhandled
 		{
-			public async virtual Task<Response> AsyncDecoratedMethodWithTaskOfTResponse(Request request)
+			public virtual async Task<Response> AsyncDecoratedMethodWithTaskOfTResponse(Request request)
 				{ return await LongRunningTask.Instance<Response>(); }
 
-			public async virtual void AsyncDecoratedMethodWithNoResponse(Request request)
+			public virtual async void AsyncDecoratedMethodWithNoResponse(Request request)
 				{ await LongRunningTask.Instance(); }
 
 			public virtual Task<Response> NonAsyncDecoratedMethodWithTaskOfTResponse(Request request)
@@ -43,7 +43,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 
 			public virtual void NonAsyncDecoratedMethodWithNoResponse(Request request) { }
 
-			public async virtual Task AsyncDecoratedMethodWithNoParameters()
+			public virtual async Task AsyncDecoratedMethodWithNoParameters()
 				{ await LongRunningTask.Instance(); }
 
 			public virtual Task NonAsyncDecoratedMethodWithTwoParameters(Request request, object tooMany)
@@ -52,19 +52,19 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit.Async
 			public virtual Task NonAsyncDecoratedMethodWithNoParameters()
 				{ return LongRunningTask.Instance(); }
 
-			public async virtual Task AsyncDecoratedMethodWithTwoParameters(Request request, object tooMany)
+			public virtual async Task AsyncDecoratedMethodWithTwoParameters(Request request, object tooMany)
 				{ await LongRunningTask.Instance(); }
 
-			public async virtual Task<Response> AsyncDecoratedMethodWithTaskOfTResponseAndCancellationToken(Request request, CancellationToken cancel)
+			public virtual async Task<Response> AsyncDecoratedMethodWithTaskOfTResponseAndCancellationToken(Request request, CancellationToken cancel)
 				{ return await LongRunningTask.Instance<Response>(); }
 
 			public static async Task StaticMethod(Request request)
 				{ await LongRunningTask.Instance(); }
 
-			public async virtual Task AsyncDecoratedMethodWithCancellationTokenAndOtherParameters(Request request, CancellationToken cancel, object other)
+			public virtual async Task AsyncDecoratedMethodWithCancellationTokenAndOtherParameters(Request request, CancellationToken cancel, object other)
 				{ await LongRunningTask.Instance(); }
 
-			public async virtual Task AsyncDecoratedMethodWithCancellationTokenInWrongPlace(CancellationToken cancel, Request request)
+			public virtual async Task AsyncDecoratedMethodWithCancellationTokenInWrongPlace(CancellationToken cancel, Request request)
 				{ await LongRunningTask.Instance(); }
 
 			public virtual Task NonAsyncDecoratedMethodWithCancellationTokenAndOtherParameters(Request request, CancellationToken cancel, object other)

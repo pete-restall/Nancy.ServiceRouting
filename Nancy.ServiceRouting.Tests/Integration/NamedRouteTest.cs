@@ -22,10 +22,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Integration
 				container.Register((ctx, args) => RouteRegistrarFactory.CreateDefaultInstance(ctx.Resolve));
 			}
 
-			protected override IEnumerable<ModuleRegistration> Modules
-			{
-				get { return new[] {new ModuleRegistration(typeof(NamedRouteModule))}; }
-			}
+			protected override IEnumerable<ModuleRegistration> Modules => new[] {new ModuleRegistration(typeof(NamedRouteModule))};
 		}
 
 		[Theory, NancyAutoData]

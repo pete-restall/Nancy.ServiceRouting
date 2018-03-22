@@ -49,10 +49,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			builder.WithServiceMethodInvocation(DummyServiceMethodInvocation).Should().BeSameAs(builder);
 		}
 
-		private static IServiceMethodInvocation DummyServiceMethodInvocation
-		{
-			get { return MockRepository.GenerateStub<IServiceMethodInvocation>(); }
-		}
+		private static IServiceMethodInvocation DummyServiceMethodInvocation => MockRepository.GenerateStub<IServiceMethodInvocation>();
 
 		[Fact]
 		public void WithRequestMessageBinder_CalledWithNullRequestMessageBinder_ExpectArgumentNullExceptionWithCorrectParamName()
@@ -68,10 +65,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Unit
 			builder.WithRequestMessageBinder(DummyRequestMessageBinder).Should().BeSameAs(builder);
 		}
 
-		private static IServiceRequestBinder DummyRequestMessageBinder
-		{
-			get { return MockRepository.GenerateStub<IServiceRequestBinder>(); }
-		}
+		private static IServiceRequestBinder DummyRequestMessageBinder => MockRepository.GenerateStub<IServiceRequestBinder>();
 
 		[Fact]
 		public void WithModule_CalledWithNullModule_ExpectArgumentNullExceptionWithCorrectParamName()

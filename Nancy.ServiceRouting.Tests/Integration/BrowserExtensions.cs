@@ -19,7 +19,7 @@ namespace Restall.Nancy.ServiceRouting.Tests.Integration
 					return browser.Options<T>(path);
 
 				default:
-					throw new ArgumentException("Verb " + verb + " not applicable for this method", "verb");
+					throw new ArgumentException("Verb " + verb + " not applicable for this method", nameof(verb));
 			}
 		}
 
@@ -28,12 +28,12 @@ namespace Restall.Nancy.ServiceRouting.Tests.Integration
 			return browser.Get(path, with => with.AcceptJson()).Body.DeserializeJson<T>();
 		}
 
-		public static T Delete<T>(this Browser browser, string path)
+		private static T Delete<T>(this Browser browser, string path)
 		{
 			return browser.Delete(path, with => with.AcceptJson()).Body.DeserializeJson<T>();
 		}
 
-		public static T Options<T>(this Browser browser, string path)
+		private static T Options<T>(this Browser browser, string path)
 		{
 			return browser.Options(path, with => with.AcceptJson()).Body.DeserializeJson<T>();
 		}
@@ -52,11 +52,11 @@ namespace Restall.Nancy.ServiceRouting.Tests.Integration
 					return browser.Patch<T>(path, request);
 
 				default:
-					throw new ArgumentException("Verb " + verb + " not applicable for this method", "verb");
+					throw new ArgumentException("Verb " + verb + " not applicable for this method", nameof(verb));
 			}
 		}
 
-		public static T Put<T>(this Browser browser, string path, object request)
+		private static T Put<T>(this Browser browser, string path, object request)
 		{
 			return browser.Put(path, FormBasedContextWithBody(request)).Body.DeserializeJson<T>();
 		}
@@ -66,12 +66,12 @@ namespace Restall.Nancy.ServiceRouting.Tests.Integration
 			return with => with.AcceptJson().JsonBody(request);
 		}
 
-		public static T Post<T>(this Browser browser, string path, object request)
+		private static T Post<T>(this Browser browser, string path, object request)
 		{
 			return browser.Post(path, FormBasedContextWithBody(request)).Body.DeserializeJson<T>();
 		}
 
-		public static T Patch<T>(this Browser browser, string path, object request)
+		private static T Patch<T>(this Browser browser, string path, object request)
 		{
 			return browser.Patch(path, FormBasedContextWithBody(request)).Body.DeserializeJson<T>();
 		}

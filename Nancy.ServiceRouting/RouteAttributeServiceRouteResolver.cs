@@ -10,7 +10,7 @@ namespace Restall.Nancy.ServiceRouting
 		public IEnumerable<Route> GetServiceRoutes(Type serviceType)
 		{
 			if (!serviceType.IsConcrete())
-				throw new ArgumentException("Type " + serviceType + " must be a concrete type", "serviceType");
+				throw new ArgumentException("Type " + serviceType + " must be a concrete type", nameof(serviceType));
 
 			return MethodsToRoutes(
 				this.GetServiceMethodsFrom(serviceType)

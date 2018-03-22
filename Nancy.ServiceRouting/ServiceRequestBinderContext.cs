@@ -9,6 +9,6 @@ namespace Restall.Nancy.ServiceRouting
 			this.NancyModule = nancyModule;
 		}
 
-		public NancyModule NancyModule { get; private set; }
+		public NancyModule NancyModule { get; }
 	}
 }

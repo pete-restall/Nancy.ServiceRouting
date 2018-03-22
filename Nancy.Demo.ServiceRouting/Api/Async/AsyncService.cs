@@ -9,7 +9,7 @@ namespace Restall.Nancy.Demo.ServiceRouting.Api.Async
 {
 	public class AsyncService
 	{
-		private readonly static IDictionary<Guid, ManualResetEvent> Timers = new ConcurrentDictionary<Guid, ManualResetEvent>();
+		private static readonly IDictionary<Guid, ManualResetEvent> Timers = new ConcurrentDictionary<Guid, ManualResetEvent>();
 
 		public object Welcome(AsyncIndex request)
 		{
@@ -18,11 +18,11 @@ namespace Restall.Nancy.Demo.ServiceRouting.Api.Async
 
 		public async Task<AsyncTimerResponse> StartTimer(AsyncTimerStartRequest request)
 		{
-			ManualResetEvent flag = new ManualResetEvent(false);
+			var flag = new ManualResetEvent(false);
 			Timers.Add(request.TimerId, flag);
 
 			int startThreadId = Thread.CurrentThread.ManagedThreadId;
-			Stopwatch stopwatch = Stopwatch.StartNew();
+			var stopwatch = Stopwatch.StartNew();
 			await Task.Factory.StartNew(() => flag.WaitOne(TimeSpan.FromMinutes(1)));
 			stopwatch.Stop();
 			int endThreadId = Thread.CurrentThread.ManagedThreadId;

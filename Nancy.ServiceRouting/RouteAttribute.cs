@@ -14,9 +14,9 @@ namespace Restall.Nancy.ServiceRouting
 			this.Verbs = verbs.Length > 0? verbs.Select(x => x.Trim().ToUpper()).ToArray(): new[] {"GET"};
 		}
 
-		public string Path { get; private set; }
+		public string Path { get; }
 
-		public IEnumerable<string> Verbs { get; private set; }
+		public IEnumerable<string> Verbs { get; }
 
 		public virtual IEnumerable<Route> WireToMethod(MethodInfo method)
 		{

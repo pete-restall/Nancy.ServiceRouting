@@ -5,9 +5,6 @@ namespace Restall.Nancy.Demo.ServiceRouting
 {
 	public static class AllTypes
 	{
-		public static IEnumerable<Type> InAssembly
-		{
-			get { return typeof(AllTypes).Assembly.GetTypes(); }
-		}
+		public static IEnumerable<Type> InAssembly => typeof(AllTypes).Assembly.GetTypes();
 	}
 }

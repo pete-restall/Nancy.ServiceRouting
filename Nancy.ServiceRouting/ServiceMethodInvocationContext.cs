@@ -12,11 +12,11 @@ namespace Restall.Nancy.ServiceRouting
 			this.DefaultResponse = defaultResponse;
 		}
 
-		public Func<object> ServiceFactory { get; private set; }
+		public Func<object> ServiceFactory { get; }
 
-		public Func<object, object> RequestBinder { get; private set; }
+		public Func<object, object> RequestBinder { get; }
 
 		[AllowNull]
-		public object DefaultResponse { get; private set; }
+		public object DefaultResponse { get; }
 	}
 }

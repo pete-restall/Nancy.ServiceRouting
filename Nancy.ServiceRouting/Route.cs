@@ -16,12 +16,12 @@ namespace Restall.Nancy.ServiceRouting
 			this.Method = method;
 		}
 
-		public string Name { get; private set; }
+		public string Name { get; }
 
-		public string Verb { get; private set; }
+		public string Verb { get; }
 
-		public string Path { get; private set; }
+		public string Path { get; }
 
-		public MethodInfo Method { get; private set; }
+		public MethodInfo Method { get; }
 	}
 }

@@ -11,7 +11,7 @@ namespace Restall.Nancy.ServiceRouting
 		{
 			this.Name = name.Trim();
 			if (this.Name == string.Empty)
-				throw new ArgumentException("Route Name cannot be empty or whitespace", "name");
+				throw new ArgumentException("Route Name cannot be empty or whitespace", nameof(name));
 		}
 
 		public override IEnumerable<Route> WireToMethod(MethodInfo method)
@@ -19,6 +19,6 @@ namespace Restall.Nancy.ServiceRouting
 			return this.Verbs.Select(v => new Route(this.Name, v, this.Path, method));
 		}
 
-		public string Name { get; private set; }
+		public string Name { get; }
 	}
 }
