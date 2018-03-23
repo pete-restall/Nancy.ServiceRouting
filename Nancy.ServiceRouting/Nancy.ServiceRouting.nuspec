@@ -11,8 +11,8 @@
 		<iconUrl>http://www.gravatar.com/avatar/833ed0920ea3273180f77ba8cee9bdc6.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
-		<releaseNotes>Support for Named Routes.</releaseNotes>
-		<copyright>Copyright Pete Restall 2014</copyright>
-		<tags>nancy nancyfx attribute routing route routes router web service services</tags>
+		<releaseNotes>Support for Custom Verbs.</releaseNotes>
+		<copyright>Copyright Pete Restall 2014-2018</copyright>
+		<tags>nancy nancyfx attribute routing route routes router web service services server rest restful</tags>
 	</metadata>
 </package>
