@@ -36,7 +36,7 @@ namespace Restall.Nancy.ServiceRouting.Async
 			return new Func<object, CancellationToken, Task<object>>((r, c) =>
 				{
 					lambda(r, c);
-					return TaskEx.FromResult(context.DefaultResponse);
+					return Task.FromResult(context.DefaultResponse);
 				});
 		}
 	}
